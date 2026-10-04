@@ -131,7 +131,11 @@ jobs:
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install -y libmpv-dev pkg-config
-          sdkmanager "platforms;android-37" "build-tools;37.0.0" "ndk;29.0.14206865" "cmake;3.22.1"
+          android sdk install \
+            platforms/android-37 \
+            build-tools/37.0.0 \
+            ndk/29.0.14206865 \
+            cmake/3.22.1
       - name: Run tests and compile every host-buildable target
         shell: bash
         run: |
@@ -169,7 +173,7 @@ jobs:
       - uses: android-actions/setup-android@v4
       - name: Install Android configuration SDK
         shell: bash
-        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+        run: android sdk install platforms/android-37 build-tools/37.0.0
       - name: Publish root metadata shard
         shell: bash
         env:
@@ -201,7 +205,7 @@ jobs:
       - uses: android-actions/setup-android@v4
       - name: Install Android configuration SDK
         shell: bash
-        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+        run: android sdk install platforms/android-37 build-tools/37.0.0
       - name: Publish Linux x64, Linux arm64 and MinGW x64 shards
         shell: bash
         env:
@@ -233,7 +237,7 @@ jobs:
       - uses: android-actions/setup-android@v4
       - name: Install Android native toolchain
         shell: bash
-        run: sdkmanager "platforms;android-37" "build-tools;37.0.0" "ndk;29.0.14206865" "cmake;3.22.1"
+        run: android sdk install platforms/android-37 build-tools/37.0.0 ndk/29.0.14206865 cmake/3.22.1
       - name: Publish Android AARs
         shell: bash
         env:
@@ -265,7 +269,7 @@ jobs:
       - uses: android-actions/setup-android@v4
       - name: Install Android configuration SDK
         shell: bash
-        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+        run: android sdk install platforms/android-37 build-tools/37.0.0
       - name: Publish macOS x64 target shard
         shell: bash
         env:
@@ -298,7 +302,7 @@ jobs:
       - uses: android-actions/setup-android@v4
       - name: Install Android configuration SDK
         shell: bash
-        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+        run: android sdk install platforms/android-37 build-tools/37.0.0
       - name: Publish macOS arm64 and iOS arm64 target shard
         shell: bash
         env:
