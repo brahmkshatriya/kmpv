@@ -1,0 +1,85 @@
+// Klib ABI Dump
+// Targets: [iosArm64, linuxArm64, linuxX64, macosArm64, macosX64, mingwX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.kmpv:kmpv-render>
+final enum class dev.kmpv/MpvOpenGlNativeDisplayType : kotlin/Enum<dev.kmpv/MpvOpenGlNativeDisplayType> { // dev.kmpv/MpvOpenGlNativeDisplayType|null[0]
+    enum entry None // dev.kmpv/MpvOpenGlNativeDisplayType.None|null[0]
+    enum entry Wayland // dev.kmpv/MpvOpenGlNativeDisplayType.Wayland|null[0]
+    enum entry X11 // dev.kmpv/MpvOpenGlNativeDisplayType.X11|null[0]
+
+    final val entries // dev.kmpv/MpvOpenGlNativeDisplayType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/MpvOpenGlNativeDisplayType> // dev.kmpv/MpvOpenGlNativeDisplayType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/MpvOpenGlNativeDisplayType // dev.kmpv/MpvOpenGlNativeDisplayType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/MpvOpenGlNativeDisplayType> // dev.kmpv/MpvOpenGlNativeDisplayType.values|values#static(){}[0]
+}
+
+final class dev.kmpv/MpvOpenGlNativeDisplay { // dev.kmpv/MpvOpenGlNativeDisplay|null[0]
+    constructor <init>(dev.kmpv/MpvOpenGlNativeDisplayType, kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed>?) // dev.kmpv/MpvOpenGlNativeDisplay.<init>|<init>(dev.kmpv.MpvOpenGlNativeDisplayType;kotlinx.cinterop.CPointer<out|kotlinx.cinterop.CPointed>?){}[0]
+
+    final val pointer // dev.kmpv/MpvOpenGlNativeDisplay.pointer|{}pointer[0]
+        final fun <get-pointer>(): kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed>? // dev.kmpv/MpvOpenGlNativeDisplay.pointer.<get-pointer>|<get-pointer>(){}[0]
+    final val type // dev.kmpv/MpvOpenGlNativeDisplay.type|{}type[0]
+        final fun <get-type>(): dev.kmpv/MpvOpenGlNativeDisplayType // dev.kmpv/MpvOpenGlNativeDisplay.type.<get-type>|<get-type>(){}[0]
+
+    final fun component1(): dev.kmpv/MpvOpenGlNativeDisplayType // dev.kmpv/MpvOpenGlNativeDisplay.component1|component1(){}[0]
+    final fun component2(): kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed>? // dev.kmpv/MpvOpenGlNativeDisplay.component2|component2(){}[0]
+    final fun copy(dev.kmpv/MpvOpenGlNativeDisplayType = ..., kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed>? = ...): dev.kmpv/MpvOpenGlNativeDisplay // dev.kmpv/MpvOpenGlNativeDisplay.copy|copy(dev.kmpv.MpvOpenGlNativeDisplayType;kotlinx.cinterop.CPointer<out|kotlinx.cinterop.CPointed>?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvOpenGlNativeDisplay.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvOpenGlNativeDisplay.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvOpenGlNativeDisplay.toString|toString(){}[0]
+
+    final object Companion { // dev.kmpv/MpvOpenGlNativeDisplay.Companion|null[0]
+        final val None // dev.kmpv/MpvOpenGlNativeDisplay.Companion.None|{}None[0]
+            final fun <get-None>(): dev.kmpv/MpvOpenGlNativeDisplay // dev.kmpv/MpvOpenGlNativeDisplay.Companion.None.<get-None>|<get-None>(){}[0]
+    }
+}
+
+final class dev.kmpv/MpvOpenGlRenderOptions { // dev.kmpv/MpvOpenGlRenderOptions|null[0]
+    constructor <init>(kotlin/Boolean = ...) // dev.kmpv/MpvOpenGlRenderOptions.<init>|<init>(kotlin.Boolean){}[0]
+
+    final val flipY // dev.kmpv/MpvOpenGlRenderOptions.flipY|{}flipY[0]
+        final fun <get-flipY>(): kotlin/Boolean // dev.kmpv/MpvOpenGlRenderOptions.flipY.<get-flipY>|<get-flipY>(){}[0]
+
+    final fun component1(): kotlin/Boolean // dev.kmpv/MpvOpenGlRenderOptions.component1|component1(){}[0]
+    final fun copy(kotlin/Boolean = ...): dev.kmpv/MpvOpenGlRenderOptions // dev.kmpv/MpvOpenGlRenderOptions.copy|copy(kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvOpenGlRenderOptions.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvOpenGlRenderOptions.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvOpenGlRenderOptions.toString|toString(){}[0]
+}
+
+final class dev.kmpv/MpvOpenGlRenderTarget { // dev.kmpv/MpvOpenGlRenderTarget|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int = ...) // dev.kmpv/MpvOpenGlRenderTarget.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+
+    final val framebuffer // dev.kmpv/MpvOpenGlRenderTarget.framebuffer|{}framebuffer[0]
+        final fun <get-framebuffer>(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.framebuffer.<get-framebuffer>|<get-framebuffer>(){}[0]
+    final val height // dev.kmpv/MpvOpenGlRenderTarget.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.height.<get-height>|<get-height>(){}[0]
+    final val internalFormat // dev.kmpv/MpvOpenGlRenderTarget.internalFormat|{}internalFormat[0]
+        final fun <get-internalFormat>(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.internalFormat.<get-internalFormat>|<get-internalFormat>(){}[0]
+    final val width // dev.kmpv/MpvOpenGlRenderTarget.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.component1|component1(){}[0]
+    final fun component2(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.component4|component4(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...): dev.kmpv/MpvOpenGlRenderTarget // dev.kmpv/MpvOpenGlRenderTarget.copy|copy(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvOpenGlRenderTarget.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvOpenGlRenderTarget.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvOpenGlRenderTarget.toString|toString(){}[0]
+}
+
+final class dev.kmpv/MpvOpenGlRenderer : kotlin/AutoCloseable { // dev.kmpv/MpvOpenGlRenderer|null[0]
+    final fun close() // dev.kmpv/MpvOpenGlRenderer.close|close(){}[0]
+    final fun render(dev.kmpv/MpvOpenGlRenderTarget, dev.kmpv/MpvOpenGlRenderOptions = ...): dev.kmpv/MpvResult<kotlin/Boolean> // dev.kmpv/MpvOpenGlRenderer.render|render(dev.kmpv.MpvOpenGlRenderTarget;dev.kmpv.MpvOpenGlRenderOptions){}[0]
+    final fun render(kotlin/Int, kotlin/Int, kotlin/Int): dev.kmpv/MpvResult<kotlin/Boolean> // dev.kmpv/MpvOpenGlRenderer.render|render(kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun reportSwap(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvOpenGlRenderer.reportSwap|reportSwap(){}[0]
+    final fun setUpdateCallback(kotlin/Function0<kotlin/Unit>?) // dev.kmpv/MpvOpenGlRenderer.setUpdateCallback|setUpdateCallback(kotlin.Function0<kotlin.Unit>?){}[0]
+}
+
+final fun (dev.kmpv/Mpv).dev.kmpv/createOpenGlRenderer(kotlin/Function1<kotlin/String, kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed>?>, dev.kmpv/MpvOpenGlNativeDisplay = ...): dev.kmpv/MpvResult<dev.kmpv/MpvOpenGlRenderer> // dev.kmpv/createOpenGlRenderer|createOpenGlRenderer@dev.kmpv.Mpv(kotlin.Function1<kotlin.String,kotlinx.cinterop.CPointer<out|kotlinx.cinterop.CPointed>?>;dev.kmpv.MpvOpenGlNativeDisplay){}[0]

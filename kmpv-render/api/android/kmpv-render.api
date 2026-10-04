@@ -1,0 +1,21 @@
+public final class dev/kmpv/MpvAndroidSurfaceOutput : java/lang/AutoCloseable {
+	public final fun attach (Landroid/view/Surface;)Ldev/kmpv/MpvResult;
+	public fun close ()V
+	public final fun detach ()Ldev/kmpv/MpvResult;
+	public final fun resize (II)Ldev/kmpv/MpvResult;
+}
+
+public final class dev/kmpv/MpvAndroidSurfaceOutputKt {
+	public static final fun configureAndroidVideoOutput (Ldev/kmpv/Mpv;Ldev/kmpv/MpvAndroidVideoMode;)Ldev/kmpv/MpvResult;
+	public static synthetic fun configureAndroidVideoOutput$default (Ldev/kmpv/Mpv;Ldev/kmpv/MpvAndroidVideoMode;ILjava/lang/Object;)Ldev/kmpv/MpvResult;
+	public static final fun createAndroidSurfaceOutput (Ldev/kmpv/Mpv;Ldev/kmpv/MpvAndroidVideoMode;)Ldev/kmpv/MpvAndroidSurfaceOutput;
+	public static synthetic fun createAndroidSurfaceOutput$default (Ldev/kmpv/Mpv;Ldev/kmpv/MpvAndroidVideoMode;ILjava/lang/Object;)Ldev/kmpv/MpvAndroidSurfaceOutput;
+}
+
+public final class dev/kmpv/MpvAndroidVideoMode : java/lang/Enum {
+	public static final field Gpu Ldev/kmpv/MpvAndroidVideoMode;
+	public static final field MediaCodecEmbed Ldev/kmpv/MpvAndroidVideoMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MpvAndroidVideoMode;
+	public static fun values ()[Ldev/kmpv/MpvAndroidVideoMode;
+}

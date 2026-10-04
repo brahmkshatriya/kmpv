@@ -1,0 +1,7 @@
+headers = kmpv_bridge.h
+headerFilter = kmpv_bridge.h
+package = dev.kmpv.bridge
+compilerOpts = -Isrc/nativeInterop/cinterop/include
+staticLibraries = libkmpv_bridge.a
+libraryPaths = build/native/bridge/macosX64
+linkerOpts = -lmpv

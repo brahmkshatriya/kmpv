@@ -1,0 +1,788 @@
+public abstract interface annotation class dev/kmpv/KmpvAndroidNativeApi : java/lang/annotation/Annotation {
+}
+
+public final class dev/kmpv/LoadMode : java/lang/Enum {
+	public static final field Append Ldev/kmpv/LoadMode;
+	public static final field AppendPlay Ldev/kmpv/LoadMode;
+	public static final field Replace Ldev/kmpv/LoadMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getMpvValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/LoadMode;
+	public static fun values ()[Ldev/kmpv/LoadMode;
+}
+
+public final class dev/kmpv/MediaStatus : java/lang/Enum {
+	public static final field Ended Ldev/kmpv/MediaStatus;
+	public static final field Error Ldev/kmpv/MediaStatus;
+	public static final field Idle Ldev/kmpv/MediaStatus;
+	public static final field Opening Ldev/kmpv/MediaStatus;
+	public static final field Ready Ldev/kmpv/MediaStatus;
+	public static final field Released Ldev/kmpv/MediaStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MediaStatus;
+	public static fun values ()[Ldev/kmpv/MediaStatus;
+}
+
+public final class dev/kmpv/Mpv : java/lang/AutoCloseable {
+	public static final field Companion Ldev/kmpv/Mpv$Companion;
+	public fun close ()V
+	public final fun command (Ldev/kmpv/MpvCommand;)Ldev/kmpv/MpvResult;
+	public final fun command ([Ljava/lang/String;)Ldev/kmpv/MpvResult;
+	public final fun commandAsync (Ldev/kmpv/MpvCommand;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun commandAsync ([Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun commandResult (Ldev/kmpv/MpvCommand;)Ldev/kmpv/MpvResult;
+	public final fun commandResult ([Ljava/lang/String;)Ldev/kmpv/MpvResult;
+	public final fun commandResultAsync (Ldev/kmpv/MpvCommand;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun commandResultAsync ([Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun get (Ldev/kmpv/MpvProperty;)Ldev/kmpv/MpvResult;
+	public final fun getAsync (Ldev/kmpv/MpvProperty;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getClientId ()J
+	public final fun getClientName ()Ljava/lang/String;
+	public final fun getEvents ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun getNodeProperty (Ljava/lang/String;)Ldev/kmpv/MpvResult;
+	public final fun getNodePropertyAsync (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun initialize ()Ldev/kmpv/MpvResult;
+	public final fun isClosed ()Z
+	public final fun isInitialized ()Z
+	public final fun loadConfigFile (Ljava/lang/String;)Ldev/kmpv/MpvResult;
+	public final fun observe (Ldev/kmpv/MpvProperty;)Lkotlinx/coroutines/flow/Flow;
+	public final fun observeNode (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun requestLogMessages (Ljava/lang/String;)Ldev/kmpv/MpvResult;
+	public final fun set (Ldev/kmpv/MpvProperty;Ljava/lang/Object;)V
+	public final fun setAsync (Ldev/kmpv/MpvProperty;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setNodeProperty (Ljava/lang/String;Ldev/kmpv/MpvNode;)Ldev/kmpv/MpvResult;
+	public final fun setNodePropertyAsync (Ljava/lang/String;Ldev/kmpv/MpvNode;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setOption (Ldev/kmpv/MpvOption;Ljava/lang/Object;)Ldev/kmpv/MpvResult;
+	public final fun setOption (Ljava/lang/String;Ljava/lang/String;)Ldev/kmpv/MpvResult;
+	public final fun setProperty (Ldev/kmpv/MpvProperty;Ljava/lang/Object;)Ldev/kmpv/MpvResult;
+}
+
+public final class dev/kmpv/Mpv$Companion {
+	public final fun create ()Ldev/kmpv/Mpv;
+}
+
+public final class dev/kmpv/MpvAndroidNativeAccessKt {
+	public static final fun androidNativeError (Ldev/kmpv/Mpv;ILjava/lang/String;)Ldev/kmpv/MpvError;
+	public static synthetic fun androidNativeError$default (Ldev/kmpv/Mpv;ILjava/lang/String;ILjava/lang/Object;)Ldev/kmpv/MpvError;
+	public static final fun withAndroidNativeHandle (Ldev/kmpv/Mpv;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class dev/kmpv/MpvCommand {
+	public final fun getArgs ()Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvCommands {
+	public static final field INSTANCE Ldev/kmpv/MpvCommands;
+	public final fun loadFile (Ljava/lang/String;Ldev/kmpv/LoadMode;Ljava/util/Map;)Ldev/kmpv/MpvCommand;
+	public static synthetic fun loadFile$default (Ldev/kmpv/MpvCommands;Ljava/lang/String;Ldev/kmpv/LoadMode;Ljava/util/Map;ILjava/lang/Object;)Ldev/kmpv/MpvCommand;
+	public final fun playlistNext ()Ldev/kmpv/MpvCommand;
+	public final fun playlistPrevious ()Ldev/kmpv/MpvCommand;
+	public final fun raw ([Ljava/lang/String;)Ldev/kmpv/MpvCommand;
+	public final fun seek-KLykuaI (JLdev/kmpv/SeekMode;Z)Ldev/kmpv/MpvCommand;
+	public static synthetic fun seek-KLykuaI$default (Ldev/kmpv/MpvCommands;JLdev/kmpv/SeekMode;ZILjava/lang/Object;)Ldev/kmpv/MpvCommand;
+	public final fun stop ()Ldev/kmpv/MpvCommand;
+}
+
+public abstract interface annotation class dev/kmpv/MpvConfigDsl : java/lang/annotation/Annotation {
+}
+
+public final class dev/kmpv/MpvEndFileReason : java/lang/Enum {
+	public static final field Eof Ldev/kmpv/MpvEndFileReason;
+	public static final field Error Ldev/kmpv/MpvEndFileReason;
+	public static final field Quit Ldev/kmpv/MpvEndFileReason;
+	public static final field Redirect Ldev/kmpv/MpvEndFileReason;
+	public static final field Stop Ldev/kmpv/MpvEndFileReason;
+	public static final field Unknown Ldev/kmpv/MpvEndFileReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MpvEndFileReason;
+	public static fun values ()[Ldev/kmpv/MpvEndFileReason;
+}
+
+public final class dev/kmpv/MpvError {
+	public fun <init> (ILjava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;Ljava/lang/String;)Ldev/kmpv/MpvError;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvError;ILjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/kmpv/MpvError;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()I
+	public final fun getContext ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class dev/kmpv/MpvEvent {
+}
+
+public final class dev/kmpv/MpvEvent$CommandReply : dev/kmpv/MpvEvent {
+	public fun <init> (JLdev/kmpv/MpvError;Ldev/kmpv/MpvNode;)V
+	public synthetic fun <init> (JLdev/kmpv/MpvError;Ldev/kmpv/MpvNode;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ldev/kmpv/MpvError;
+	public final fun component3 ()Ldev/kmpv/MpvNode;
+	public final fun copy (JLdev/kmpv/MpvError;Ldev/kmpv/MpvNode;)Ldev/kmpv/MpvEvent$CommandReply;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$CommandReply;JLdev/kmpv/MpvError;Ldev/kmpv/MpvNode;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$CommandReply;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public final fun getRequestId ()J
+	public final fun getResult ()Ldev/kmpv/MpvNode;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$EndFile : dev/kmpv/MpvEvent {
+	public fun <init> (Ldev/kmpv/MpvEndFileReason;Ldev/kmpv/MpvError;)V
+	public synthetic fun <init> (Ldev/kmpv/MpvEndFileReason;Ldev/kmpv/MpvError;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ldev/kmpv/MpvEndFileReason;
+	public final fun component2 ()Ldev/kmpv/MpvError;
+	public final fun copy (Ldev/kmpv/MpvEndFileReason;Ldev/kmpv/MpvError;)Ldev/kmpv/MpvEvent$EndFile;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$EndFile;Ldev/kmpv/MpvEndFileReason;Ldev/kmpv/MpvError;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$EndFile;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public final fun getReason ()Ldev/kmpv/MpvEndFileReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$FileLoaded : dev/kmpv/MpvEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvEvent$FileLoaded;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$GetPropertyReply : dev/kmpv/MpvEvent {
+	public fun <init> (JLjava/lang/String;Ldev/kmpv/MpvError;Ldev/kmpv/MpvValue;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ldev/kmpv/MpvError;
+	public final fun component4 ()Ldev/kmpv/MpvValue;
+	public final fun copy (JLjava/lang/String;Ldev/kmpv/MpvError;Ldev/kmpv/MpvValue;)Ldev/kmpv/MpvEvent$GetPropertyReply;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$GetPropertyReply;JLjava/lang/String;Ldev/kmpv/MpvError;Ldev/kmpv/MpvValue;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$GetPropertyReply;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRequestId ()J
+	public final fun getValue ()Ldev/kmpv/MpvValue;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$LogMessage : dev/kmpv/MpvEvent {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldev/kmpv/MpvEvent$LogMessage;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$LogMessage;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$LogMessage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLevel ()Ljava/lang/String;
+	public final fun getPrefix ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$PlaybackRestart : dev/kmpv/MpvEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvEvent$PlaybackRestart;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$PropertyChange : dev/kmpv/MpvEvent {
+	public fun <init> (JLjava/lang/String;Ldev/kmpv/MpvValue;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ldev/kmpv/MpvValue;
+	public final fun copy (JLjava/lang/String;Ldev/kmpv/MpvValue;)Ldev/kmpv/MpvEvent$PropertyChange;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$PropertyChange;JLjava/lang/String;Ldev/kmpv/MpvValue;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$PropertyChange;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getObserverId ()J
+	public final fun getValue ()Ldev/kmpv/MpvValue;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$QueueOverflow : dev/kmpv/MpvEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvEvent$QueueOverflow;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$Seek : dev/kmpv/MpvEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvEvent$Seek;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$SetPropertyReply : dev/kmpv/MpvEvent {
+	public fun <init> (JLdev/kmpv/MpvError;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ldev/kmpv/MpvError;
+	public final fun copy (JLdev/kmpv/MpvError;)Ldev/kmpv/MpvEvent$SetPropertyReply;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$SetPropertyReply;JLdev/kmpv/MpvError;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$SetPropertyReply;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public final fun getRequestId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$Shutdown : dev/kmpv/MpvEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvEvent$Shutdown;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$StartFile : dev/kmpv/MpvEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvEvent$StartFile;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvEvent$Unknown : dev/kmpv/MpvEvent {
+	public fun <init> (IJLdev/kmpv/MpvError;)V
+	public final fun component1 ()I
+	public final fun component2 ()J
+	public final fun component3 ()Ldev/kmpv/MpvError;
+	public final fun copy (IJLdev/kmpv/MpvError;)Ldev/kmpv/MpvEvent$Unknown;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvEvent$Unknown;IJLdev/kmpv/MpvError;ILjava/lang/Object;)Ldev/kmpv/MpvEvent$Unknown;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public final fun getEventId ()I
+	public final fun getReplyUserdata ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvException : java/lang/RuntimeException {
+	public fun <init> (Ldev/kmpv/MpvError;)V
+	public final fun getError ()Ldev/kmpv/MpvError;
+}
+
+public final class dev/kmpv/MpvHardwareDecoding : java/lang/Enum {
+	public static final field Auto Ldev/kmpv/MpvHardwareDecoding;
+	public static final field AutoCopySafe Ldev/kmpv/MpvHardwareDecoding;
+	public static final field AutoSafe Ldev/kmpv/MpvHardwareDecoding;
+	public static final field D3d11vaCopy Ldev/kmpv/MpvHardwareDecoding;
+	public static final field MediaCodec Ldev/kmpv/MpvHardwareDecoding;
+	public static final field MediaCodecCopy Ldev/kmpv/MpvHardwareDecoding;
+	public static final field No Ldev/kmpv/MpvHardwareDecoding;
+	public static final field VaapiCopy Ldev/kmpv/MpvHardwareDecoding;
+	public static final field VideoToolbox Ldev/kmpv/MpvHardwareDecoding;
+	public static final field VideoToolboxCopy Ldev/kmpv/MpvHardwareDecoding;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getMpvValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MpvHardwareDecoding;
+	public static fun values ()[Ldev/kmpv/MpvHardwareDecoding;
+}
+
+public abstract interface class dev/kmpv/MpvNode {
+}
+
+public final class dev/kmpv/MpvNode$ArrayValue : dev/kmpv/MpvNode {
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Ldev/kmpv/MpvNode$ArrayValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvNode$ArrayValue;Ljava/util/List;ILjava/lang/Object;)Ldev/kmpv/MpvNode$ArrayValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValues ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$BytesValue : dev/kmpv/MpvNode {
+	public fun <init> ([B)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()[B
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$DoubleValue : dev/kmpv/MpvNode {
+	public fun <init> (D)V
+	public final fun component1 ()D
+	public final fun copy (D)Ldev/kmpv/MpvNode$DoubleValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvNode$DoubleValue;DILjava/lang/Object;)Ldev/kmpv/MpvNode$DoubleValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$FlagValue : dev/kmpv/MpvNode {
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Ldev/kmpv/MpvNode$FlagValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvNode$FlagValue;ZILjava/lang/Object;)Ldev/kmpv/MpvNode$FlagValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$Int64Value : dev/kmpv/MpvNode {
+	public fun <init> (J)V
+	public final fun component1 ()J
+	public final fun copy (J)Ldev/kmpv/MpvNode$Int64Value;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvNode$Int64Value;JILjava/lang/Object;)Ldev/kmpv/MpvNode$Int64Value;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$MapValue : dev/kmpv/MpvNode {
+	public fun <init> (Ljava/util/Map;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun copy (Ljava/util/Map;)Ldev/kmpv/MpvNode$MapValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvNode$MapValue;Ljava/util/Map;ILjava/lang/Object;)Ldev/kmpv/MpvNode$MapValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValues ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$None : dev/kmpv/MpvNode {
+	public static final field INSTANCE Ldev/kmpv/MpvNode$None;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvNode$StringValue : dev/kmpv/MpvNode {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Ldev/kmpv/MpvNode$StringValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvNode$StringValue;Ljava/lang/String;ILjava/lang/Object;)Ldev/kmpv/MpvNode$StringValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvOption {
+	public static final field Companion Ldev/kmpv/MpvOption$Companion;
+	public final fun getName ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvOption$Companion {
+	public final fun double (Ljava/lang/String;)Ldev/kmpv/MpvOption;
+	public final fun flag (Ljava/lang/String;)Ldev/kmpv/MpvOption;
+	public final fun int (Ljava/lang/String;)Ldev/kmpv/MpvOption;
+	public final fun of (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvOption;
+	public final fun string (Ljava/lang/String;)Ldev/kmpv/MpvOption;
+}
+
+public final class dev/kmpv/MpvOptionKt {
+	public static final fun mpvOptions (Lkotlin/jvm/functions/Function1;)Ljava/util/Map;
+}
+
+public final class dev/kmpv/MpvOptions {
+	public static final field INSTANCE Ldev/kmpv/MpvOptions;
+	public final fun getAo ()Ldev/kmpv/MpvOption;
+	public final fun getAudioClientName ()Ldev/kmpv/MpvOption;
+	public final fun getHardwareDecoding ()Ldev/kmpv/MpvOption;
+	public final fun getHwdec ()Ldev/kmpv/MpvOption;
+	public final fun getKeepOpen ()Ldev/kmpv/MpvOption;
+	public final fun getTerminal ()Ldev/kmpv/MpvOption;
+	public final fun getVideoOutput ()Ldev/kmpv/MpvOption;
+	public final fun getVo ()Ldev/kmpv/MpvOption;
+}
+
+public final class dev/kmpv/MpvOptionsBuilder {
+	public final fun option (Ldev/kmpv/MpvOption;Ljava/lang/Object;)V
+	public final fun option (Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class dev/kmpv/MpvPlayer : java/lang/AutoCloseable {
+	public static final field Companion Ldev/kmpv/MpvPlayer$Companion;
+	public fun close ()V
+	public final fun getEvents ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun getRaw ()Ldev/kmpv/Mpv;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun load (Ljava/lang/String;ZLjava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun load (Ljava/lang/String;ZLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun load$default (Ldev/kmpv/MpvPlayer;Ljava/lang/String;ZLjava/util/Map;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun load$default (Ldev/kmpv/MpvPlayer;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun pause ()Ldev/kmpv/MpvResult;
+	public final fun play ()Ldev/kmpv/MpvResult;
+	public final fun seekTo-LRDsOJo (J)Ldev/kmpv/MpvResult;
+	public final fun selectTrack (Ldev/kmpv/MpvTrack;)Ldev/kmpv/MpvResult;
+	public final fun selectTrack (Ldev/kmpv/MpvTrackType;Ldev/kmpv/MpvTrackSelection;)Ldev/kmpv/MpvResult;
+	public final fun setMuted (Z)Ldev/kmpv/MpvResult;
+	public final fun setSpeed (D)Ldev/kmpv/MpvResult;
+	public final fun setVolume (D)Ldev/kmpv/MpvResult;
+	public final fun skip-LRDsOJo (J)Ldev/kmpv/MpvResult;
+	public final fun stop ()Ldev/kmpv/MpvResult;
+	public final fun stopPlayback ()Ldev/kmpv/MpvResult;
+	public final fun toggleMute ()Ldev/kmpv/MpvResult;
+	public final fun togglePlayPause ()Ldev/kmpv/MpvResult;
+	public final fun tracks ()Ldev/kmpv/MpvResult;
+}
+
+public final class dev/kmpv/MpvPlayer$Companion {
+	public final fun create (Ldev/kmpv/MpvPlayerConfig;)Ldev/kmpv/MpvResult;
+	public final fun create (Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvResult;
+	public static synthetic fun create$default (Ldev/kmpv/MpvPlayer$Companion;Ldev/kmpv/MpvPlayerConfig;ILjava/lang/Object;)Ldev/kmpv/MpvResult;
+}
+
+public final class dev/kmpv/MpvPlayerConfig {
+	public fun <init> ()V
+	public fun <init> (Ljava/util/Map;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/Map;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/Map;Ljava/lang/String;)Ldev/kmpv/MpvPlayerConfig;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvPlayerConfig;Ljava/util/Map;Ljava/lang/String;ILjava/lang/Object;)Ldev/kmpv/MpvPlayerConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConfigFile ()Ljava/lang/String;
+	public final fun getOptions ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvPlayerConfigBuilder {
+	public final fun configFile (Ljava/lang/String;)V
+	public final fun getConfigFile ()Ljava/lang/String;
+	public final fun option (Ldev/kmpv/MpvOption;Ljava/lang/Object;)V
+	public final fun option (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun setConfigFile (Ljava/lang/String;)V
+}
+
+public abstract interface class dev/kmpv/MpvPlayerEvent {
+}
+
+public final class dev/kmpv/MpvPlayerEvent$MediaEnded : dev/kmpv/MpvPlayerEvent {
+	public fun <init> (Ldev/kmpv/MpvEndFileReason;)V
+	public final fun component1 ()Ldev/kmpv/MpvEndFileReason;
+	public final fun copy (Ldev/kmpv/MpvEndFileReason;)Ldev/kmpv/MpvPlayerEvent$MediaEnded;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvPlayerEvent$MediaEnded;Ldev/kmpv/MpvEndFileReason;ILjava/lang/Object;)Ldev/kmpv/MpvPlayerEvent$MediaEnded;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ldev/kmpv/MpvEndFileReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvPlayerEvent$MediaLoaded : dev/kmpv/MpvPlayerEvent {
+	public static final field INSTANCE Ldev/kmpv/MpvPlayerEvent$MediaLoaded;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvPlayerEvent$PlaybackError : dev/kmpv/MpvPlayerEvent {
+	public fun <init> (Ldev/kmpv/MpvError;)V
+	public final fun component1 ()Ldev/kmpv/MpvError;
+	public final fun copy (Ldev/kmpv/MpvError;)Ldev/kmpv/MpvPlayerEvent$PlaybackError;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvPlayerEvent$PlaybackError;Ldev/kmpv/MpvError;ILjava/lang/Object;)Ldev/kmpv/MpvPlayerEvent$PlaybackError;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvPlayerKt {
+	public static final fun mpvPlayerConfig (Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvPlayerConfig;
+}
+
+public final class dev/kmpv/MpvPlayerState {
+	public fun <init> ()V
+	public synthetic fun <init> (Ldev/kmpv/MediaStatus;ZZZJLkotlin/time/Duration;DZDZLjava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Ldev/kmpv/MpvError;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ldev/kmpv/MediaStatus;ZZZJLkotlin/time/Duration;DZDZLjava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Ldev/kmpv/MpvError;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ldev/kmpv/MediaStatus;
+	public final fun component10 ()Z
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/util/List;
+	public final fun component14 ()Ljava/lang/Long;
+	public final fun component15 ()Ljava/lang/Long;
+	public final fun component16 ()Ljava/lang/Double;
+	public final fun component17 ()Ljava/lang/Double;
+	public final fun component18 ()Ljava/lang/String;
+	public final fun component19 ()Ldev/kmpv/MpvError;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5-UwyO8pc ()J
+	public final fun component6-FghU774 ()Lkotlin/time/Duration;
+	public final fun component7 ()D
+	public final fun component8 ()Z
+	public final fun component9 ()D
+	public final fun copy-xNPJqdk (Ldev/kmpv/MediaStatus;ZZZJLkotlin/time/Duration;DZDZLjava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Ldev/kmpv/MpvError;)Ldev/kmpv/MpvPlayerState;
+	public static synthetic fun copy-xNPJqdk$default (Ldev/kmpv/MpvPlayerState;Ldev/kmpv/MediaStatus;ZZZJLkotlin/time/Duration;DZDZLjava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Ldev/kmpv/MpvError;ILjava/lang/Object;)Ldev/kmpv/MpvPlayerState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAudioTracks ()Ljava/util/List;
+	public final fun getDuration-FghU774 ()Lkotlin/time/Duration;
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public final fun getHardwareDecoder ()Ljava/lang/String;
+	public final fun getMediaStatus ()Ldev/kmpv/MediaStatus;
+	public final fun getMuted ()Z
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getPlayWhenReady ()Z
+	public final fun getPosition-UwyO8pc ()J
+	public final fun getSeekable ()Z
+	public final fun getSpeed ()D
+	public final fun getSubtitleTracks ()Ljava/util/List;
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun getTracks ()Ljava/util/List;
+	public final fun getVideoBitrate ()Ljava/lang/Double;
+	public final fun getVideoFps ()Ljava/lang/Double;
+	public final fun getVideoHeight ()Ljava/lang/Long;
+	public final fun getVideoTracks ()Ljava/util/List;
+	public final fun getVideoWidth ()Ljava/lang/Long;
+	public final fun getVolume ()D
+	public fun hashCode ()I
+	public final fun isBuffering ()Z
+	public final fun isPlaying ()Z
+	public final fun isSeeking ()Z
+	public final fun selectedTrack (Ldev/kmpv/MpvTrackType;)Ldev/kmpv/MpvTrack;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvProperties {
+	public static final field INSTANCE Ldev/kmpv/MpvProperties;
+	public final fun getAudioTrack ()Ldev/kmpv/MpvProperty;
+	public final fun getCacheBufferingState ()Ldev/kmpv/MpvProperty;
+	public final fun getCoreIdle ()Ldev/kmpv/MpvProperty;
+	public final fun getDuration ()Ldev/kmpv/MpvProperty;
+	public final fun getEofReached ()Ldev/kmpv/MpvProperty;
+	public final fun getEstimatedVideoFps ()Ldev/kmpv/MpvProperty;
+	public final fun getHeight ()Ldev/kmpv/MpvProperty;
+	public final fun getHwdecCurrent ()Ldev/kmpv/MpvProperty;
+	public final fun getIdleActive ()Ldev/kmpv/MpvProperty;
+	public final fun getMediaTitle ()Ldev/kmpv/MpvProperty;
+	public final fun getMpvVersion ()Ldev/kmpv/MpvProperty;
+	public final fun getMute ()Ldev/kmpv/MpvProperty;
+	public final fun getPath ()Ldev/kmpv/MpvProperty;
+	public final fun getPause ()Ldev/kmpv/MpvProperty;
+	public final fun getPausedForCache ()Ldev/kmpv/MpvProperty;
+	public final fun getSeekable ()Ldev/kmpv/MpvProperty;
+	public final fun getSeeking ()Ldev/kmpv/MpvProperty;
+	public final fun getSpeed ()Ldev/kmpv/MpvProperty;
+	public final fun getSubtitleTrack ()Ldev/kmpv/MpvProperty;
+	public final fun getTimePos ()Ldev/kmpv/MpvProperty;
+	public final fun getTrackList ()Ldev/kmpv/MpvProperty;
+	public final fun getVideoBitrate ()Ldev/kmpv/MpvProperty;
+	public final fun getVideoTrack ()Ldev/kmpv/MpvProperty;
+	public final fun getVolume ()Ldev/kmpv/MpvProperty;
+	public final fun getWidth ()Ldev/kmpv/MpvProperty;
+}
+
+public final class dev/kmpv/MpvProperty {
+	public static final field Companion Ldev/kmpv/MpvProperty$Companion;
+	public final fun getName ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvProperty$Companion {
+	public final fun double (Ljava/lang/String;)Ldev/kmpv/MpvProperty;
+	public final fun flag (Ljava/lang/String;)Ldev/kmpv/MpvProperty;
+	public final fun int64 (Ljava/lang/String;)Ldev/kmpv/MpvProperty;
+	public final fun mappedString (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvProperty;
+	public final fun node (Ljava/lang/String;)Ldev/kmpv/MpvProperty;
+	public final fun string (Ljava/lang/String;)Ldev/kmpv/MpvProperty;
+}
+
+public abstract interface class dev/kmpv/MpvResult {
+}
+
+public final class dev/kmpv/MpvResult$Failure : dev/kmpv/MpvResult {
+	public fun <init> (Ldev/kmpv/MpvError;)V
+	public final fun component1 ()Ldev/kmpv/MpvError;
+	public final fun copy (Ldev/kmpv/MpvError;)Ldev/kmpv/MpvResult$Failure;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvResult$Failure;Ldev/kmpv/MpvError;ILjava/lang/Object;)Ldev/kmpv/MpvResult$Failure;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/kmpv/MpvError;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvResult$Success : dev/kmpv/MpvResult {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/Object;)Ldev/kmpv/MpvResult$Success;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvResult$Success;Ljava/lang/Object;ILjava/lang/Object;)Ldev/kmpv/MpvResult$Success;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvResultKt {
+	public static final fun errorOrNull (Ldev/kmpv/MpvResult;)Ldev/kmpv/MpvError;
+	public static final fun exceptionOrNull (Ldev/kmpv/MpvResult;)Ldev/kmpv/MpvException;
+	public static final fun fold (Ldev/kmpv/MpvResult;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun getOrNull (Ldev/kmpv/MpvResult;)Ljava/lang/Object;
+	public static final fun getOrThrow (Ldev/kmpv/MpvResult;)Ljava/lang/Object;
+	public static final fun isFailure (Ldev/kmpv/MpvResult;)Z
+	public static final fun isSuccess (Ldev/kmpv/MpvResult;)Z
+	public static final fun map (Ldev/kmpv/MpvResult;Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvResult;
+	public static final fun onFailure (Ldev/kmpv/MpvResult;Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvResult;
+	public static final fun onSuccess (Ldev/kmpv/MpvResult;Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvResult;
+	public static final fun recover (Ldev/kmpv/MpvResult;Lkotlin/jvm/functions/Function1;)Ldev/kmpv/MpvResult;
+	public static final fun toKotlinResult (Ldev/kmpv/MpvResult;)Ljava/lang/Object;
+}
+
+public final class dev/kmpv/MpvTrack {
+	public fun <init> (IJLdev/kmpv/MpvTrackType;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Long;)V
+	public synthetic fun <init> (IJLdev/kmpv/MpvTrackType;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component10 ()Ljava/lang/Double;
+	public final fun component11 ()Ljava/lang/Long;
+	public final fun component2 ()J
+	public final fun component3 ()Ldev/kmpv/MpvTrackType;
+	public final fun component4 ()Z
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Long;
+	public final fun component9 ()Ljava/lang/Long;
+	public final fun copy (IJLdev/kmpv/MpvTrackType;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Long;)Ldev/kmpv/MpvTrack;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvTrack;IJLdev/kmpv/MpvTrackType;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Double;Ljava/lang/Long;ILjava/lang/Object;)Ldev/kmpv/MpvTrack;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCodec ()Ljava/lang/String;
+	public final fun getFps ()Ljava/lang/Double;
+	public final fun getHeight ()Ljava/lang/Long;
+	public final fun getHlsBitrate ()Ljava/lang/Long;
+	public final fun getId ()J
+	public final fun getIndex ()I
+	public final fun getLanguage ()Ljava/lang/String;
+	public final fun getSelected ()Z
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun getType ()Ldev/kmpv/MpvTrackType;
+	public final fun getWidth ()Ljava/lang/Long;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvTrackKt {
+	public static final fun trackList (Ldev/kmpv/Mpv;)Ldev/kmpv/MpvResult;
+}
+
+public abstract interface class dev/kmpv/MpvTrackSelection {
+}
+
+public final class dev/kmpv/MpvTrackSelection$Auto : dev/kmpv/MpvTrackSelection {
+	public static final field INSTANCE Ldev/kmpv/MpvTrackSelection$Auto;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvTrackSelection$Disabled : dev/kmpv/MpvTrackSelection {
+	public static final field INSTANCE Ldev/kmpv/MpvTrackSelection$Disabled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvTrackSelection$Id : dev/kmpv/MpvTrackSelection {
+	public fun <init> (J)V
+	public final fun component1 ()J
+	public final fun copy (J)Ldev/kmpv/MpvTrackSelection$Id;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvTrackSelection$Id;JILjava/lang/Object;)Ldev/kmpv/MpvTrackSelection$Id;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvTrackType : java/lang/Enum {
+	public static final field Audio Ldev/kmpv/MpvTrackType;
+	public static final field Subtitle Ldev/kmpv/MpvTrackType;
+	public static final field Unknown Ldev/kmpv/MpvTrackType;
+	public static final field Video Ldev/kmpv/MpvTrackType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MpvTrackType;
+	public static fun values ()[Ldev/kmpv/MpvTrackType;
+}
+
+public abstract interface class dev/kmpv/MpvValue {
+}
+
+public final class dev/kmpv/MpvValue$DoubleValue : dev/kmpv/MpvValue {
+	public fun <init> (D)V
+	public final fun component1 ()D
+	public final fun copy (D)Ldev/kmpv/MpvValue$DoubleValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvValue$DoubleValue;DILjava/lang/Object;)Ldev/kmpv/MpvValue$DoubleValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvValue$FlagValue : dev/kmpv/MpvValue {
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Ldev/kmpv/MpvValue$FlagValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvValue$FlagValue;ZILjava/lang/Object;)Ldev/kmpv/MpvValue$FlagValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvValue$Int64Value : dev/kmpv/MpvValue {
+	public fun <init> (J)V
+	public final fun component1 ()J
+	public final fun copy (J)Ldev/kmpv/MpvValue$Int64Value;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvValue$Int64Value;JILjava/lang/Object;)Ldev/kmpv/MpvValue$Int64Value;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvValue$NodeValue : dev/kmpv/MpvValue {
+	public fun <init> (Ldev/kmpv/MpvNode;)V
+	public final fun component1 ()Ldev/kmpv/MpvNode;
+	public final fun copy (Ldev/kmpv/MpvNode;)Ldev/kmpv/MpvValue$NodeValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvValue$NodeValue;Ldev/kmpv/MpvNode;ILjava/lang/Object;)Ldev/kmpv/MpvValue$NodeValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ldev/kmpv/MpvNode;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvValue$StringValue : dev/kmpv/MpvValue {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Ldev/kmpv/MpvValue$StringValue;
+	public static synthetic fun copy$default (Ldev/kmpv/MpvValue$StringValue;Ljava/lang/String;ILjava/lang/Object;)Ldev/kmpv/MpvValue$StringValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/kmpv/MpvVideoOutput : java/lang/Enum {
+	public static final field Gpu Ldev/kmpv/MpvVideoOutput;
+	public static final field LibMpv Ldev/kmpv/MpvVideoOutput;
+	public static final field MediaCodecEmbed Ldev/kmpv/MpvVideoOutput;
+	public static final field Null Ldev/kmpv/MpvVideoOutput;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getMpvValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MpvVideoOutput;
+	public static fun values ()[Ldev/kmpv/MpvVideoOutput;
+}
+
+public final class dev/kmpv/SeekMode : java/lang/Enum {
+	public static final field Absolute Ldev/kmpv/SeekMode;
+	public static final field AbsolutePercent Ldev/kmpv/SeekMode;
+	public static final field Relative Ldev/kmpv/SeekMode;
+	public static final field RelativePercent Ldev/kmpv/SeekMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getMpvValue ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/SeekMode;
+	public static fun values ()[Ldev/kmpv/SeekMode;
+}

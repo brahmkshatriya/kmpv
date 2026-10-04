@@ -1,0 +1,939 @@
+// Klib ABI Dump
+// Targets: [iosArm64, linuxArm64, linuxX64, macosArm64, macosX64, mingwX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.kmpv:kmpv>
+open annotation class dev.kmpv/KmpvNativeApi : kotlin/Annotation { // dev.kmpv/KmpvNativeApi|null[0]
+    constructor <init>() // dev.kmpv/KmpvNativeApi.<init>|<init>(){}[0]
+}
+
+open annotation class dev.kmpv/MpvConfigDsl : kotlin/Annotation { // dev.kmpv/MpvConfigDsl|null[0]
+    constructor <init>() // dev.kmpv/MpvConfigDsl.<init>|<init>(){}[0]
+}
+
+final enum class dev.kmpv/LoadMode : kotlin/Enum<dev.kmpv/LoadMode> { // dev.kmpv/LoadMode|null[0]
+    enum entry Append // dev.kmpv/LoadMode.Append|null[0]
+    enum entry AppendPlay // dev.kmpv/LoadMode.AppendPlay|null[0]
+    enum entry Replace // dev.kmpv/LoadMode.Replace|null[0]
+
+    final val entries // dev.kmpv/LoadMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/LoadMode> // dev.kmpv/LoadMode.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val mpvValue // dev.kmpv/LoadMode.mpvValue|{}mpvValue[0]
+        final fun <get-mpvValue>(): kotlin/String // dev.kmpv/LoadMode.mpvValue.<get-mpvValue>|<get-mpvValue>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/LoadMode // dev.kmpv/LoadMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/LoadMode> // dev.kmpv/LoadMode.values|values#static(){}[0]
+}
+
+final enum class dev.kmpv/MediaStatus : kotlin/Enum<dev.kmpv/MediaStatus> { // dev.kmpv/MediaStatus|null[0]
+    enum entry Ended // dev.kmpv/MediaStatus.Ended|null[0]
+    enum entry Error // dev.kmpv/MediaStatus.Error|null[0]
+    enum entry Idle // dev.kmpv/MediaStatus.Idle|null[0]
+    enum entry Opening // dev.kmpv/MediaStatus.Opening|null[0]
+    enum entry Ready // dev.kmpv/MediaStatus.Ready|null[0]
+    enum entry Released // dev.kmpv/MediaStatus.Released|null[0]
+
+    final val entries // dev.kmpv/MediaStatus.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/MediaStatus> // dev.kmpv/MediaStatus.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/MediaStatus // dev.kmpv/MediaStatus.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/MediaStatus> // dev.kmpv/MediaStatus.values|values#static(){}[0]
+}
+
+final enum class dev.kmpv/MpvEndFileReason : kotlin/Enum<dev.kmpv/MpvEndFileReason> { // dev.kmpv/MpvEndFileReason|null[0]
+    enum entry Eof // dev.kmpv/MpvEndFileReason.Eof|null[0]
+    enum entry Error // dev.kmpv/MpvEndFileReason.Error|null[0]
+    enum entry Quit // dev.kmpv/MpvEndFileReason.Quit|null[0]
+    enum entry Redirect // dev.kmpv/MpvEndFileReason.Redirect|null[0]
+    enum entry Stop // dev.kmpv/MpvEndFileReason.Stop|null[0]
+    enum entry Unknown // dev.kmpv/MpvEndFileReason.Unknown|null[0]
+
+    final val entries // dev.kmpv/MpvEndFileReason.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/MpvEndFileReason> // dev.kmpv/MpvEndFileReason.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/MpvEndFileReason // dev.kmpv/MpvEndFileReason.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/MpvEndFileReason> // dev.kmpv/MpvEndFileReason.values|values#static(){}[0]
+}
+
+final enum class dev.kmpv/MpvHardwareDecoding : kotlin/Enum<dev.kmpv/MpvHardwareDecoding> { // dev.kmpv/MpvHardwareDecoding|null[0]
+    enum entry Auto // dev.kmpv/MpvHardwareDecoding.Auto|null[0]
+    enum entry AutoCopySafe // dev.kmpv/MpvHardwareDecoding.AutoCopySafe|null[0]
+    enum entry AutoSafe // dev.kmpv/MpvHardwareDecoding.AutoSafe|null[0]
+    enum entry D3d11vaCopy // dev.kmpv/MpvHardwareDecoding.D3d11vaCopy|null[0]
+    enum entry MediaCodec // dev.kmpv/MpvHardwareDecoding.MediaCodec|null[0]
+    enum entry MediaCodecCopy // dev.kmpv/MpvHardwareDecoding.MediaCodecCopy|null[0]
+    enum entry No // dev.kmpv/MpvHardwareDecoding.No|null[0]
+    enum entry VaapiCopy // dev.kmpv/MpvHardwareDecoding.VaapiCopy|null[0]
+    enum entry VideoToolbox // dev.kmpv/MpvHardwareDecoding.VideoToolbox|null[0]
+    enum entry VideoToolboxCopy // dev.kmpv/MpvHardwareDecoding.VideoToolboxCopy|null[0]
+
+    final val entries // dev.kmpv/MpvHardwareDecoding.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/MpvHardwareDecoding> // dev.kmpv/MpvHardwareDecoding.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val mpvValue // dev.kmpv/MpvHardwareDecoding.mpvValue|{}mpvValue[0]
+        final fun <get-mpvValue>(): kotlin/String // dev.kmpv/MpvHardwareDecoding.mpvValue.<get-mpvValue>|<get-mpvValue>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/MpvHardwareDecoding // dev.kmpv/MpvHardwareDecoding.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/MpvHardwareDecoding> // dev.kmpv/MpvHardwareDecoding.values|values#static(){}[0]
+}
+
+final enum class dev.kmpv/MpvTrackType : kotlin/Enum<dev.kmpv/MpvTrackType> { // dev.kmpv/MpvTrackType|null[0]
+    enum entry Audio // dev.kmpv/MpvTrackType.Audio|null[0]
+    enum entry Subtitle // dev.kmpv/MpvTrackType.Subtitle|null[0]
+    enum entry Unknown // dev.kmpv/MpvTrackType.Unknown|null[0]
+    enum entry Video // dev.kmpv/MpvTrackType.Video|null[0]
+
+    final val entries // dev.kmpv/MpvTrackType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/MpvTrackType> // dev.kmpv/MpvTrackType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/MpvTrackType // dev.kmpv/MpvTrackType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/MpvTrackType> // dev.kmpv/MpvTrackType.values|values#static(){}[0]
+}
+
+final enum class dev.kmpv/MpvVideoOutput : kotlin/Enum<dev.kmpv/MpvVideoOutput> { // dev.kmpv/MpvVideoOutput|null[0]
+    enum entry Gpu // dev.kmpv/MpvVideoOutput.Gpu|null[0]
+    enum entry LibMpv // dev.kmpv/MpvVideoOutput.LibMpv|null[0]
+    enum entry MediaCodecEmbed // dev.kmpv/MpvVideoOutput.MediaCodecEmbed|null[0]
+    enum entry Null // dev.kmpv/MpvVideoOutput.Null|null[0]
+
+    final val entries // dev.kmpv/MpvVideoOutput.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/MpvVideoOutput> // dev.kmpv/MpvVideoOutput.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val mpvValue // dev.kmpv/MpvVideoOutput.mpvValue|{}mpvValue[0]
+        final fun <get-mpvValue>(): kotlin/String // dev.kmpv/MpvVideoOutput.mpvValue.<get-mpvValue>|<get-mpvValue>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/MpvVideoOutput // dev.kmpv/MpvVideoOutput.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/MpvVideoOutput> // dev.kmpv/MpvVideoOutput.values|values#static(){}[0]
+}
+
+final enum class dev.kmpv/SeekMode : kotlin/Enum<dev.kmpv/SeekMode> { // dev.kmpv/SeekMode|null[0]
+    enum entry Absolute // dev.kmpv/SeekMode.Absolute|null[0]
+    enum entry AbsolutePercent // dev.kmpv/SeekMode.AbsolutePercent|null[0]
+    enum entry Relative // dev.kmpv/SeekMode.Relative|null[0]
+    enum entry RelativePercent // dev.kmpv/SeekMode.RelativePercent|null[0]
+
+    final val entries // dev.kmpv/SeekMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.kmpv/SeekMode> // dev.kmpv/SeekMode.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val mpvValue // dev.kmpv/SeekMode.mpvValue|{}mpvValue[0]
+        final fun <get-mpvValue>(): kotlin/String // dev.kmpv/SeekMode.mpvValue.<get-mpvValue>|<get-mpvValue>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.kmpv/SeekMode // dev.kmpv/SeekMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.kmpv/SeekMode> // dev.kmpv/SeekMode.values|values#static(){}[0]
+}
+
+sealed interface <#A: out kotlin/Any?> dev.kmpv/MpvResult { // dev.kmpv/MpvResult|null[0]
+    final class <#A1: kotlin/Any?> Success : dev.kmpv/MpvResult<#A1> { // dev.kmpv/MpvResult.Success|null[0]
+        constructor <init>(#A1) // dev.kmpv/MpvResult.Success.<init>|<init>(1:0){}[0]
+
+        final val value // dev.kmpv/MpvResult.Success.value|{}value[0]
+            final fun <get-value>(): #A1 // dev.kmpv/MpvResult.Success.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): #A1 // dev.kmpv/MpvResult.Success.component1|component1(){}[0]
+        final fun copy(#A1 = ...): dev.kmpv/MpvResult.Success<#A1> // dev.kmpv/MpvResult.Success.copy|copy(1:0){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvResult.Success.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvResult.Success.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvResult.Success.toString|toString(){}[0]
+    }
+
+    final class Failure : dev.kmpv/MpvResult<kotlin/Nothing> { // dev.kmpv/MpvResult.Failure|null[0]
+        constructor <init>(dev.kmpv/MpvError) // dev.kmpv/MpvResult.Failure.<init>|<init>(dev.kmpv.MpvError){}[0]
+
+        final val error // dev.kmpv/MpvResult.Failure.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError // dev.kmpv/MpvResult.Failure.error.<get-error>|<get-error>(){}[0]
+
+        final fun component1(): dev.kmpv/MpvError // dev.kmpv/MpvResult.Failure.component1|component1(){}[0]
+        final fun copy(dev.kmpv/MpvError = ...): dev.kmpv/MpvResult.Failure // dev.kmpv/MpvResult.Failure.copy|copy(dev.kmpv.MpvError){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvResult.Failure.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvResult.Failure.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvResult.Failure.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent|null[0]
+    final class CommandReply : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.CommandReply|null[0]
+        constructor <init>(kotlin/Long, dev.kmpv/MpvError?, dev.kmpv/MpvNode? = ...) // dev.kmpv/MpvEvent.CommandReply.<init>|<init>(kotlin.Long;dev.kmpv.MpvError?;dev.kmpv.MpvNode?){}[0]
+
+        final val error // dev.kmpv/MpvEvent.CommandReply.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.CommandReply.error.<get-error>|<get-error>(){}[0]
+        final val requestId // dev.kmpv/MpvEvent.CommandReply.requestId|{}requestId[0]
+            final fun <get-requestId>(): kotlin/Long // dev.kmpv/MpvEvent.CommandReply.requestId.<get-requestId>|<get-requestId>(){}[0]
+        final val result // dev.kmpv/MpvEvent.CommandReply.result|{}result[0]
+            final fun <get-result>(): dev.kmpv/MpvNode? // dev.kmpv/MpvEvent.CommandReply.result.<get-result>|<get-result>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvEvent.CommandReply.component1|component1(){}[0]
+        final fun component2(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.CommandReply.component2|component2(){}[0]
+        final fun component3(): dev.kmpv/MpvNode? // dev.kmpv/MpvEvent.CommandReply.component3|component3(){}[0]
+        final fun copy(kotlin/Long = ..., dev.kmpv/MpvError? = ..., dev.kmpv/MpvNode? = ...): dev.kmpv/MpvEvent.CommandReply // dev.kmpv/MpvEvent.CommandReply.copy|copy(kotlin.Long;dev.kmpv.MpvError?;dev.kmpv.MpvNode?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.CommandReply.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.CommandReply.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.CommandReply.toString|toString(){}[0]
+    }
+
+    final class EndFile : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.EndFile|null[0]
+        constructor <init>(dev.kmpv/MpvEndFileReason, dev.kmpv/MpvError? = ...) // dev.kmpv/MpvEvent.EndFile.<init>|<init>(dev.kmpv.MpvEndFileReason;dev.kmpv.MpvError?){}[0]
+
+        final val error // dev.kmpv/MpvEvent.EndFile.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.EndFile.error.<get-error>|<get-error>(){}[0]
+        final val reason // dev.kmpv/MpvEvent.EndFile.reason|{}reason[0]
+            final fun <get-reason>(): dev.kmpv/MpvEndFileReason // dev.kmpv/MpvEvent.EndFile.reason.<get-reason>|<get-reason>(){}[0]
+
+        final fun component1(): dev.kmpv/MpvEndFileReason // dev.kmpv/MpvEvent.EndFile.component1|component1(){}[0]
+        final fun component2(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.EndFile.component2|component2(){}[0]
+        final fun copy(dev.kmpv/MpvEndFileReason = ..., dev.kmpv/MpvError? = ...): dev.kmpv/MpvEvent.EndFile // dev.kmpv/MpvEvent.EndFile.copy|copy(dev.kmpv.MpvEndFileReason;dev.kmpv.MpvError?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.EndFile.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.EndFile.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.EndFile.toString|toString(){}[0]
+    }
+
+    final class GetPropertyReply : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.GetPropertyReply|null[0]
+        constructor <init>(kotlin/Long, kotlin/String, dev.kmpv/MpvError?, dev.kmpv/MpvValue?) // dev.kmpv/MpvEvent.GetPropertyReply.<init>|<init>(kotlin.Long;kotlin.String;dev.kmpv.MpvError?;dev.kmpv.MpvValue?){}[0]
+
+        final val error // dev.kmpv/MpvEvent.GetPropertyReply.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.GetPropertyReply.error.<get-error>|<get-error>(){}[0]
+        final val name // dev.kmpv/MpvEvent.GetPropertyReply.name|{}name[0]
+            final fun <get-name>(): kotlin/String // dev.kmpv/MpvEvent.GetPropertyReply.name.<get-name>|<get-name>(){}[0]
+        final val requestId // dev.kmpv/MpvEvent.GetPropertyReply.requestId|{}requestId[0]
+            final fun <get-requestId>(): kotlin/Long // dev.kmpv/MpvEvent.GetPropertyReply.requestId.<get-requestId>|<get-requestId>(){}[0]
+        final val value // dev.kmpv/MpvEvent.GetPropertyReply.value|{}value[0]
+            final fun <get-value>(): dev.kmpv/MpvValue? // dev.kmpv/MpvEvent.GetPropertyReply.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvEvent.GetPropertyReply.component1|component1(){}[0]
+        final fun component2(): kotlin/String // dev.kmpv/MpvEvent.GetPropertyReply.component2|component2(){}[0]
+        final fun component3(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.GetPropertyReply.component3|component3(){}[0]
+        final fun component4(): dev.kmpv/MpvValue? // dev.kmpv/MpvEvent.GetPropertyReply.component4|component4(){}[0]
+        final fun copy(kotlin/Long = ..., kotlin/String = ..., dev.kmpv/MpvError? = ..., dev.kmpv/MpvValue? = ...): dev.kmpv/MpvEvent.GetPropertyReply // dev.kmpv/MpvEvent.GetPropertyReply.copy|copy(kotlin.Long;kotlin.String;dev.kmpv.MpvError?;dev.kmpv.MpvValue?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.GetPropertyReply.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.GetPropertyReply.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.GetPropertyReply.toString|toString(){}[0]
+    }
+
+    final class LogMessage : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.LogMessage|null[0]
+        constructor <init>(kotlin/String, kotlin/String, kotlin/String) // dev.kmpv/MpvEvent.LogMessage.<init>|<init>(kotlin.String;kotlin.String;kotlin.String){}[0]
+
+        final val level // dev.kmpv/MpvEvent.LogMessage.level|{}level[0]
+            final fun <get-level>(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.level.<get-level>|<get-level>(){}[0]
+        final val prefix // dev.kmpv/MpvEvent.LogMessage.prefix|{}prefix[0]
+            final fun <get-prefix>(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.prefix.<get-prefix>|<get-prefix>(){}[0]
+        final val text // dev.kmpv/MpvEvent.LogMessage.text|{}text[0]
+            final fun <get-text>(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.text.<get-text>|<get-text>(){}[0]
+
+        final fun component1(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.component1|component1(){}[0]
+        final fun component2(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.component2|component2(){}[0]
+        final fun component3(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.component3|component3(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): dev.kmpv/MpvEvent.LogMessage // dev.kmpv/MpvEvent.LogMessage.copy|copy(kotlin.String;kotlin.String;kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.LogMessage.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.LogMessage.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.LogMessage.toString|toString(){}[0]
+    }
+
+    final class PropertyChange : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.PropertyChange|null[0]
+        constructor <init>(kotlin/Long, kotlin/String, dev.kmpv/MpvValue?) // dev.kmpv/MpvEvent.PropertyChange.<init>|<init>(kotlin.Long;kotlin.String;dev.kmpv.MpvValue?){}[0]
+
+        final val name // dev.kmpv/MpvEvent.PropertyChange.name|{}name[0]
+            final fun <get-name>(): kotlin/String // dev.kmpv/MpvEvent.PropertyChange.name.<get-name>|<get-name>(){}[0]
+        final val observerId // dev.kmpv/MpvEvent.PropertyChange.observerId|{}observerId[0]
+            final fun <get-observerId>(): kotlin/Long // dev.kmpv/MpvEvent.PropertyChange.observerId.<get-observerId>|<get-observerId>(){}[0]
+        final val value // dev.kmpv/MpvEvent.PropertyChange.value|{}value[0]
+            final fun <get-value>(): dev.kmpv/MpvValue? // dev.kmpv/MpvEvent.PropertyChange.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvEvent.PropertyChange.component1|component1(){}[0]
+        final fun component2(): kotlin/String // dev.kmpv/MpvEvent.PropertyChange.component2|component2(){}[0]
+        final fun component3(): dev.kmpv/MpvValue? // dev.kmpv/MpvEvent.PropertyChange.component3|component3(){}[0]
+        final fun copy(kotlin/Long = ..., kotlin/String = ..., dev.kmpv/MpvValue? = ...): dev.kmpv/MpvEvent.PropertyChange // dev.kmpv/MpvEvent.PropertyChange.copy|copy(kotlin.Long;kotlin.String;dev.kmpv.MpvValue?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.PropertyChange.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.PropertyChange.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.PropertyChange.toString|toString(){}[0]
+    }
+
+    final class SetPropertyReply : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.SetPropertyReply|null[0]
+        constructor <init>(kotlin/Long, dev.kmpv/MpvError?) // dev.kmpv/MpvEvent.SetPropertyReply.<init>|<init>(kotlin.Long;dev.kmpv.MpvError?){}[0]
+
+        final val error // dev.kmpv/MpvEvent.SetPropertyReply.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.SetPropertyReply.error.<get-error>|<get-error>(){}[0]
+        final val requestId // dev.kmpv/MpvEvent.SetPropertyReply.requestId|{}requestId[0]
+            final fun <get-requestId>(): kotlin/Long // dev.kmpv/MpvEvent.SetPropertyReply.requestId.<get-requestId>|<get-requestId>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvEvent.SetPropertyReply.component1|component1(){}[0]
+        final fun component2(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.SetPropertyReply.component2|component2(){}[0]
+        final fun copy(kotlin/Long = ..., dev.kmpv/MpvError? = ...): dev.kmpv/MpvEvent.SetPropertyReply // dev.kmpv/MpvEvent.SetPropertyReply.copy|copy(kotlin.Long;dev.kmpv.MpvError?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.SetPropertyReply.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.SetPropertyReply.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.SetPropertyReply.toString|toString(){}[0]
+    }
+
+    final class Unknown : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.Unknown|null[0]
+        constructor <init>(kotlin/Int, kotlin/Long, dev.kmpv/MpvError?) // dev.kmpv/MpvEvent.Unknown.<init>|<init>(kotlin.Int;kotlin.Long;dev.kmpv.MpvError?){}[0]
+
+        final val error // dev.kmpv/MpvEvent.Unknown.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.Unknown.error.<get-error>|<get-error>(){}[0]
+        final val eventId // dev.kmpv/MpvEvent.Unknown.eventId|{}eventId[0]
+            final fun <get-eventId>(): kotlin/Int // dev.kmpv/MpvEvent.Unknown.eventId.<get-eventId>|<get-eventId>(){}[0]
+        final val replyUserdata // dev.kmpv/MpvEvent.Unknown.replyUserdata|{}replyUserdata[0]
+            final fun <get-replyUserdata>(): kotlin/Long // dev.kmpv/MpvEvent.Unknown.replyUserdata.<get-replyUserdata>|<get-replyUserdata>(){}[0]
+
+        final fun component1(): kotlin/Int // dev.kmpv/MpvEvent.Unknown.component1|component1(){}[0]
+        final fun component2(): kotlin/Long // dev.kmpv/MpvEvent.Unknown.component2|component2(){}[0]
+        final fun component3(): dev.kmpv/MpvError? // dev.kmpv/MpvEvent.Unknown.component3|component3(){}[0]
+        final fun copy(kotlin/Int = ..., kotlin/Long = ..., dev.kmpv/MpvError? = ...): dev.kmpv/MpvEvent.Unknown // dev.kmpv/MpvEvent.Unknown.copy|copy(kotlin.Int;kotlin.Long;dev.kmpv.MpvError?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.Unknown.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.Unknown.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.Unknown.toString|toString(){}[0]
+    }
+
+    final object FileLoaded : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.FileLoaded|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.FileLoaded.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.FileLoaded.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.FileLoaded.toString|toString(){}[0]
+    }
+
+    final object PlaybackRestart : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.PlaybackRestart|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.PlaybackRestart.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.PlaybackRestart.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.PlaybackRestart.toString|toString(){}[0]
+    }
+
+    final object QueueOverflow : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.QueueOverflow|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.QueueOverflow.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.QueueOverflow.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.QueueOverflow.toString|toString(){}[0]
+    }
+
+    final object Seek : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.Seek|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.Seek.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.Seek.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.Seek.toString|toString(){}[0]
+    }
+
+    final object Shutdown : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.Shutdown|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.Shutdown.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.Shutdown.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.Shutdown.toString|toString(){}[0]
+    }
+
+    final object StartFile : dev.kmpv/MpvEvent { // dev.kmpv/MpvEvent.StartFile|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvEvent.StartFile.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvEvent.StartFile.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvEvent.StartFile.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.kmpv/MpvNode { // dev.kmpv/MpvNode|null[0]
+    final class ArrayValue : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.ArrayValue|null[0]
+        constructor <init>(kotlin.collections/List<dev.kmpv/MpvNode>) // dev.kmpv/MpvNode.ArrayValue.<init>|<init>(kotlin.collections.List<dev.kmpv.MpvNode>){}[0]
+
+        final val values // dev.kmpv/MpvNode.ArrayValue.values|{}values[0]
+            final fun <get-values>(): kotlin.collections/List<dev.kmpv/MpvNode> // dev.kmpv/MpvNode.ArrayValue.values.<get-values>|<get-values>(){}[0]
+
+        final fun component1(): kotlin.collections/List<dev.kmpv/MpvNode> // dev.kmpv/MpvNode.ArrayValue.component1|component1(){}[0]
+        final fun copy(kotlin.collections/List<dev.kmpv/MpvNode> = ...): dev.kmpv/MpvNode.ArrayValue // dev.kmpv/MpvNode.ArrayValue.copy|copy(kotlin.collections.List<dev.kmpv.MpvNode>){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.ArrayValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.ArrayValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.ArrayValue.toString|toString(){}[0]
+    }
+
+    final class BytesValue : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.BytesValue|null[0]
+        constructor <init>(kotlin/ByteArray) // dev.kmpv/MpvNode.BytesValue.<init>|<init>(kotlin.ByteArray){}[0]
+
+        final val value // dev.kmpv/MpvNode.BytesValue.value|{}value[0]
+            final fun <get-value>(): kotlin/ByteArray // dev.kmpv/MpvNode.BytesValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.BytesValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.BytesValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.BytesValue.toString|toString(){}[0]
+    }
+
+    final class DoubleValue : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.DoubleValue|null[0]
+        constructor <init>(kotlin/Double) // dev.kmpv/MpvNode.DoubleValue.<init>|<init>(kotlin.Double){}[0]
+
+        final val value // dev.kmpv/MpvNode.DoubleValue.value|{}value[0]
+            final fun <get-value>(): kotlin/Double // dev.kmpv/MpvNode.DoubleValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Double // dev.kmpv/MpvNode.DoubleValue.component1|component1(){}[0]
+        final fun copy(kotlin/Double = ...): dev.kmpv/MpvNode.DoubleValue // dev.kmpv/MpvNode.DoubleValue.copy|copy(kotlin.Double){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.DoubleValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.DoubleValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.DoubleValue.toString|toString(){}[0]
+    }
+
+    final class FlagValue : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.FlagValue|null[0]
+        constructor <init>(kotlin/Boolean) // dev.kmpv/MpvNode.FlagValue.<init>|<init>(kotlin.Boolean){}[0]
+
+        final val value // dev.kmpv/MpvNode.FlagValue.value|{}value[0]
+            final fun <get-value>(): kotlin/Boolean // dev.kmpv/MpvNode.FlagValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Boolean // dev.kmpv/MpvNode.FlagValue.component1|component1(){}[0]
+        final fun copy(kotlin/Boolean = ...): dev.kmpv/MpvNode.FlagValue // dev.kmpv/MpvNode.FlagValue.copy|copy(kotlin.Boolean){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.FlagValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.FlagValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.FlagValue.toString|toString(){}[0]
+    }
+
+    final class Int64Value : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.Int64Value|null[0]
+        constructor <init>(kotlin/Long) // dev.kmpv/MpvNode.Int64Value.<init>|<init>(kotlin.Long){}[0]
+
+        final val value // dev.kmpv/MpvNode.Int64Value.value|{}value[0]
+            final fun <get-value>(): kotlin/Long // dev.kmpv/MpvNode.Int64Value.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvNode.Int64Value.component1|component1(){}[0]
+        final fun copy(kotlin/Long = ...): dev.kmpv/MpvNode.Int64Value // dev.kmpv/MpvNode.Int64Value.copy|copy(kotlin.Long){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.Int64Value.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.Int64Value.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.Int64Value.toString|toString(){}[0]
+    }
+
+    final class MapValue : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.MapValue|null[0]
+        constructor <init>(kotlin.collections/Map<kotlin/String, dev.kmpv/MpvNode>) // dev.kmpv/MpvNode.MapValue.<init>|<init>(kotlin.collections.Map<kotlin.String,dev.kmpv.MpvNode>){}[0]
+
+        final val values // dev.kmpv/MpvNode.MapValue.values|{}values[0]
+            final fun <get-values>(): kotlin.collections/Map<kotlin/String, dev.kmpv/MpvNode> // dev.kmpv/MpvNode.MapValue.values.<get-values>|<get-values>(){}[0]
+
+        final fun component1(): kotlin.collections/Map<kotlin/String, dev.kmpv/MpvNode> // dev.kmpv/MpvNode.MapValue.component1|component1(){}[0]
+        final fun copy(kotlin.collections/Map<kotlin/String, dev.kmpv/MpvNode> = ...): dev.kmpv/MpvNode.MapValue // dev.kmpv/MpvNode.MapValue.copy|copy(kotlin.collections.Map<kotlin.String,dev.kmpv.MpvNode>){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.MapValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.MapValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.MapValue.toString|toString(){}[0]
+    }
+
+    final class StringValue : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.StringValue|null[0]
+        constructor <init>(kotlin/String) // dev.kmpv/MpvNode.StringValue.<init>|<init>(kotlin.String){}[0]
+
+        final val value // dev.kmpv/MpvNode.StringValue.value|{}value[0]
+            final fun <get-value>(): kotlin/String // dev.kmpv/MpvNode.StringValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/String // dev.kmpv/MpvNode.StringValue.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): dev.kmpv/MpvNode.StringValue // dev.kmpv/MpvNode.StringValue.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.StringValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.StringValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.StringValue.toString|toString(){}[0]
+    }
+
+    final object None : dev.kmpv/MpvNode { // dev.kmpv/MpvNode.None|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvNode.None.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvNode.None.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvNode.None.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.kmpv/MpvPlayerEvent { // dev.kmpv/MpvPlayerEvent|null[0]
+    final class MediaEnded : dev.kmpv/MpvPlayerEvent { // dev.kmpv/MpvPlayerEvent.MediaEnded|null[0]
+        constructor <init>(dev.kmpv/MpvEndFileReason) // dev.kmpv/MpvPlayerEvent.MediaEnded.<init>|<init>(dev.kmpv.MpvEndFileReason){}[0]
+
+        final val reason // dev.kmpv/MpvPlayerEvent.MediaEnded.reason|{}reason[0]
+            final fun <get-reason>(): dev.kmpv/MpvEndFileReason // dev.kmpv/MpvPlayerEvent.MediaEnded.reason.<get-reason>|<get-reason>(){}[0]
+
+        final fun component1(): dev.kmpv/MpvEndFileReason // dev.kmpv/MpvPlayerEvent.MediaEnded.component1|component1(){}[0]
+        final fun copy(dev.kmpv/MpvEndFileReason = ...): dev.kmpv/MpvPlayerEvent.MediaEnded // dev.kmpv/MpvPlayerEvent.MediaEnded.copy|copy(dev.kmpv.MpvEndFileReason){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvPlayerEvent.MediaEnded.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvPlayerEvent.MediaEnded.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvPlayerEvent.MediaEnded.toString|toString(){}[0]
+    }
+
+    final class PlaybackError : dev.kmpv/MpvPlayerEvent { // dev.kmpv/MpvPlayerEvent.PlaybackError|null[0]
+        constructor <init>(dev.kmpv/MpvError) // dev.kmpv/MpvPlayerEvent.PlaybackError.<init>|<init>(dev.kmpv.MpvError){}[0]
+
+        final val error // dev.kmpv/MpvPlayerEvent.PlaybackError.error|{}error[0]
+            final fun <get-error>(): dev.kmpv/MpvError // dev.kmpv/MpvPlayerEvent.PlaybackError.error.<get-error>|<get-error>(){}[0]
+
+        final fun component1(): dev.kmpv/MpvError // dev.kmpv/MpvPlayerEvent.PlaybackError.component1|component1(){}[0]
+        final fun copy(dev.kmpv/MpvError = ...): dev.kmpv/MpvPlayerEvent.PlaybackError // dev.kmpv/MpvPlayerEvent.PlaybackError.copy|copy(dev.kmpv.MpvError){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvPlayerEvent.PlaybackError.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvPlayerEvent.PlaybackError.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvPlayerEvent.PlaybackError.toString|toString(){}[0]
+    }
+
+    final object MediaLoaded : dev.kmpv/MpvPlayerEvent { // dev.kmpv/MpvPlayerEvent.MediaLoaded|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvPlayerEvent.MediaLoaded.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvPlayerEvent.MediaLoaded.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvPlayerEvent.MediaLoaded.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.kmpv/MpvTrackSelection { // dev.kmpv/MpvTrackSelection|null[0]
+    final class Id : dev.kmpv/MpvTrackSelection { // dev.kmpv/MpvTrackSelection.Id|null[0]
+        constructor <init>(kotlin/Long) // dev.kmpv/MpvTrackSelection.Id.<init>|<init>(kotlin.Long){}[0]
+
+        final val id // dev.kmpv/MpvTrackSelection.Id.id|{}id[0]
+            final fun <get-id>(): kotlin/Long // dev.kmpv/MpvTrackSelection.Id.id.<get-id>|<get-id>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvTrackSelection.Id.component1|component1(){}[0]
+        final fun copy(kotlin/Long = ...): dev.kmpv/MpvTrackSelection.Id // dev.kmpv/MpvTrackSelection.Id.copy|copy(kotlin.Long){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvTrackSelection.Id.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvTrackSelection.Id.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvTrackSelection.Id.toString|toString(){}[0]
+    }
+
+    final object Auto : dev.kmpv/MpvTrackSelection { // dev.kmpv/MpvTrackSelection.Auto|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvTrackSelection.Auto.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvTrackSelection.Auto.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvTrackSelection.Auto.toString|toString(){}[0]
+    }
+
+    final object Disabled : dev.kmpv/MpvTrackSelection { // dev.kmpv/MpvTrackSelection.Disabled|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvTrackSelection.Disabled.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvTrackSelection.Disabled.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvTrackSelection.Disabled.toString|toString(){}[0]
+    }
+}
+
+sealed interface dev.kmpv/MpvValue { // dev.kmpv/MpvValue|null[0]
+    final class DoubleValue : dev.kmpv/MpvValue { // dev.kmpv/MpvValue.DoubleValue|null[0]
+        constructor <init>(kotlin/Double) // dev.kmpv/MpvValue.DoubleValue.<init>|<init>(kotlin.Double){}[0]
+
+        final val value // dev.kmpv/MpvValue.DoubleValue.value|{}value[0]
+            final fun <get-value>(): kotlin/Double // dev.kmpv/MpvValue.DoubleValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Double // dev.kmpv/MpvValue.DoubleValue.component1|component1(){}[0]
+        final fun copy(kotlin/Double = ...): dev.kmpv/MpvValue.DoubleValue // dev.kmpv/MpvValue.DoubleValue.copy|copy(kotlin.Double){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvValue.DoubleValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvValue.DoubleValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvValue.DoubleValue.toString|toString(){}[0]
+    }
+
+    final class FlagValue : dev.kmpv/MpvValue { // dev.kmpv/MpvValue.FlagValue|null[0]
+        constructor <init>(kotlin/Boolean) // dev.kmpv/MpvValue.FlagValue.<init>|<init>(kotlin.Boolean){}[0]
+
+        final val value // dev.kmpv/MpvValue.FlagValue.value|{}value[0]
+            final fun <get-value>(): kotlin/Boolean // dev.kmpv/MpvValue.FlagValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Boolean // dev.kmpv/MpvValue.FlagValue.component1|component1(){}[0]
+        final fun copy(kotlin/Boolean = ...): dev.kmpv/MpvValue.FlagValue // dev.kmpv/MpvValue.FlagValue.copy|copy(kotlin.Boolean){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvValue.FlagValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvValue.FlagValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvValue.FlagValue.toString|toString(){}[0]
+    }
+
+    final class Int64Value : dev.kmpv/MpvValue { // dev.kmpv/MpvValue.Int64Value|null[0]
+        constructor <init>(kotlin/Long) // dev.kmpv/MpvValue.Int64Value.<init>|<init>(kotlin.Long){}[0]
+
+        final val value // dev.kmpv/MpvValue.Int64Value.value|{}value[0]
+            final fun <get-value>(): kotlin/Long // dev.kmpv/MpvValue.Int64Value.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/Long // dev.kmpv/MpvValue.Int64Value.component1|component1(){}[0]
+        final fun copy(kotlin/Long = ...): dev.kmpv/MpvValue.Int64Value // dev.kmpv/MpvValue.Int64Value.copy|copy(kotlin.Long){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvValue.Int64Value.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvValue.Int64Value.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvValue.Int64Value.toString|toString(){}[0]
+    }
+
+    final class NodeValue : dev.kmpv/MpvValue { // dev.kmpv/MpvValue.NodeValue|null[0]
+        constructor <init>(dev.kmpv/MpvNode) // dev.kmpv/MpvValue.NodeValue.<init>|<init>(dev.kmpv.MpvNode){}[0]
+
+        final val value // dev.kmpv/MpvValue.NodeValue.value|{}value[0]
+            final fun <get-value>(): dev.kmpv/MpvNode // dev.kmpv/MpvValue.NodeValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): dev.kmpv/MpvNode // dev.kmpv/MpvValue.NodeValue.component1|component1(){}[0]
+        final fun copy(dev.kmpv/MpvNode = ...): dev.kmpv/MpvValue.NodeValue // dev.kmpv/MpvValue.NodeValue.copy|copy(dev.kmpv.MpvNode){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvValue.NodeValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvValue.NodeValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvValue.NodeValue.toString|toString(){}[0]
+    }
+
+    final class StringValue : dev.kmpv/MpvValue { // dev.kmpv/MpvValue.StringValue|null[0]
+        constructor <init>(kotlin/String) // dev.kmpv/MpvValue.StringValue.<init>|<init>(kotlin.String){}[0]
+
+        final val value // dev.kmpv/MpvValue.StringValue.value|{}value[0]
+            final fun <get-value>(): kotlin/String // dev.kmpv/MpvValue.StringValue.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): kotlin/String // dev.kmpv/MpvValue.StringValue.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): dev.kmpv/MpvValue.StringValue // dev.kmpv/MpvValue.StringValue.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvValue.StringValue.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.kmpv/MpvValue.StringValue.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.kmpv/MpvValue.StringValue.toString|toString(){}[0]
+    }
+}
+
+final class <#A: kotlin/Any?> dev.kmpv/MpvOption { // dev.kmpv/MpvOption|null[0]
+    final val name // dev.kmpv/MpvOption.name|{}name[0]
+        final fun <get-name>(): kotlin/String // dev.kmpv/MpvOption.name.<get-name>|<get-name>(){}[0]
+
+    final object Companion { // dev.kmpv/MpvOption.Companion|null[0]
+        final fun <#A2: kotlin/Any?> of(kotlin/String, kotlin/Function1<#A2, kotlin/String>): dev.kmpv/MpvOption<#A2> // dev.kmpv/MpvOption.Companion.of|of(kotlin.String;kotlin.Function1<0:0,kotlin.String>){0§<kotlin.Any?>}[0]
+        final fun double(kotlin/String): dev.kmpv/MpvOption<kotlin/Double> // dev.kmpv/MpvOption.Companion.double|double(kotlin.String){}[0]
+        final fun flag(kotlin/String): dev.kmpv/MpvOption<kotlin/Boolean> // dev.kmpv/MpvOption.Companion.flag|flag(kotlin.String){}[0]
+        final fun int(kotlin/String): dev.kmpv/MpvOption<kotlin/Int> // dev.kmpv/MpvOption.Companion.int|int(kotlin.String){}[0]
+        final fun string(kotlin/String): dev.kmpv/MpvOption<kotlin/String> // dev.kmpv/MpvOption.Companion.string|string(kotlin.String){}[0]
+    }
+}
+
+final class <#A: kotlin/Any?> dev.kmpv/MpvProperty { // dev.kmpv/MpvProperty|null[0]
+    final val name // dev.kmpv/MpvProperty.name|{}name[0]
+        final fun <get-name>(): kotlin/String // dev.kmpv/MpvProperty.name.<get-name>|<get-name>(){}[0]
+
+    final object Companion { // dev.kmpv/MpvProperty.Companion|null[0]
+        final fun <#A2: kotlin/Any?> mappedString(kotlin/String, kotlin/Function1<kotlin/String, #A2?>, kotlin/Function1<#A2, kotlin/String>): dev.kmpv/MpvProperty<#A2> // dev.kmpv/MpvProperty.Companion.mappedString|mappedString(kotlin.String;kotlin.Function1<kotlin.String,0:0?>;kotlin.Function1<0:0,kotlin.String>){0§<kotlin.Any?>}[0]
+        final fun double(kotlin/String): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperty.Companion.double|double(kotlin.String){}[0]
+        final fun flag(kotlin/String): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperty.Companion.flag|flag(kotlin.String){}[0]
+        final fun int64(kotlin/String): dev.kmpv/MpvProperty<kotlin/Long> // dev.kmpv/MpvProperty.Companion.int64|int64(kotlin.String){}[0]
+        final fun node(kotlin/String): dev.kmpv/MpvProperty<dev.kmpv/MpvNode> // dev.kmpv/MpvProperty.Companion.node|node(kotlin.String){}[0]
+        final fun string(kotlin/String): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperty.Companion.string|string(kotlin.String){}[0]
+    }
+}
+
+final class dev.kmpv/Mpv : kotlin/AutoCloseable { // dev.kmpv/Mpv|null[0]
+    final val clientId // dev.kmpv/Mpv.clientId|{}clientId[0]
+        final fun <get-clientId>(): kotlin/Long // dev.kmpv/Mpv.clientId.<get-clientId>|<get-clientId>(){}[0]
+    final val clientName // dev.kmpv/Mpv.clientName|{}clientName[0]
+        final fun <get-clientName>(): kotlin/String // dev.kmpv/Mpv.clientName.<get-clientName>|<get-clientName>(){}[0]
+    final val events // dev.kmpv/Mpv.events|{}events[0]
+        final fun <get-events>(): kotlinx.coroutines.flow/SharedFlow<dev.kmpv/MpvEvent> // dev.kmpv/Mpv.events.<get-events>|<get-events>(){}[0]
+    final val isClosed // dev.kmpv/Mpv.isClosed|{}isClosed[0]
+        final fun <get-isClosed>(): kotlin/Boolean // dev.kmpv/Mpv.isClosed.<get-isClosed>|<get-isClosed>(){}[0]
+    final val isInitialized // dev.kmpv/Mpv.isInitialized|{}isInitialized[0]
+        final fun <get-isInitialized>(): kotlin/Boolean // dev.kmpv/Mpv.isInitialized.<get-isInitialized>|<get-isInitialized>(){}[0]
+
+    final fun <#A1: kotlin/Any?> get(dev.kmpv/MpvProperty<#A1>): dev.kmpv/MpvResult<#A1> // dev.kmpv/Mpv.get|get(dev.kmpv.MpvProperty<0:0>){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> observe(dev.kmpv/MpvProperty<#A1>): kotlinx.coroutines.flow/Flow<#A1?> // dev.kmpv/Mpv.observe|observe(dev.kmpv.MpvProperty<0:0>){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> set(dev.kmpv/MpvProperty<#A1>, #A1) // dev.kmpv/Mpv.set|set(dev.kmpv.MpvProperty<0:0>;0:0){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> setOption(dev.kmpv/MpvOption<#A1>, #A1): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.setOption|setOption(dev.kmpv.MpvOption<0:0>;0:0){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> setProperty(dev.kmpv/MpvProperty<#A1>, #A1): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.setProperty|setProperty(dev.kmpv.MpvProperty<0:0>;0:0){0§<kotlin.Any?>}[0]
+    final fun close() // dev.kmpv/Mpv.close|close(){}[0]
+    final fun command(dev.kmpv/MpvCommand): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.command|command(dev.kmpv.MpvCommand){}[0]
+    final fun command(kotlin/Array<out kotlin/String>...): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.command|command(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun commandResult(dev.kmpv/MpvCommand): dev.kmpv/MpvResult<dev.kmpv/MpvNode> // dev.kmpv/Mpv.commandResult|commandResult(dev.kmpv.MpvCommand){}[0]
+    final fun commandResult(kotlin/Array<out kotlin/String>...): dev.kmpv/MpvResult<dev.kmpv/MpvNode> // dev.kmpv/Mpv.commandResult|commandResult(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun getNodeProperty(kotlin/String): dev.kmpv/MpvResult<dev.kmpv/MpvNode> // dev.kmpv/Mpv.getNodeProperty|getNodeProperty(kotlin.String){}[0]
+    final fun initialize(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.initialize|initialize(){}[0]
+    final fun loadConfigFile(kotlin/String): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.loadConfigFile|loadConfigFile(kotlin.String){}[0]
+    final fun observeNode(kotlin/String): kotlinx.coroutines.flow/Flow<dev.kmpv/MpvNode?> // dev.kmpv/Mpv.observeNode|observeNode(kotlin.String){}[0]
+    final fun requestLogMessages(kotlin/String): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.requestLogMessages|requestLogMessages(kotlin.String){}[0]
+    final fun setNodeProperty(kotlin/String, dev.kmpv/MpvNode): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.setNodeProperty|setNodeProperty(kotlin.String;dev.kmpv.MpvNode){}[0]
+    final fun setOption(kotlin/String, kotlin/String): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.setOption|setOption(kotlin.String;kotlin.String){}[0]
+    final suspend fun <#A1: kotlin/Any?> getAsync(dev.kmpv/MpvProperty<#A1>): dev.kmpv/MpvResult<#A1> // dev.kmpv/Mpv.getAsync|getAsync(dev.kmpv.MpvProperty<0:0>){0§<kotlin.Any?>}[0]
+    final suspend fun <#A1: kotlin/Any?> setAsync(dev.kmpv/MpvProperty<#A1>, #A1): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.setAsync|setAsync(dev.kmpv.MpvProperty<0:0>;0:0){0§<kotlin.Any?>}[0]
+    final suspend fun commandAsync(dev.kmpv/MpvCommand): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.commandAsync|commandAsync(dev.kmpv.MpvCommand){}[0]
+    final suspend fun commandAsync(kotlin/Array<out kotlin/String>...): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.commandAsync|commandAsync(kotlin.Array<out|kotlin.String>...){}[0]
+    final suspend fun commandResultAsync(dev.kmpv/MpvCommand): dev.kmpv/MpvResult<dev.kmpv/MpvNode> // dev.kmpv/Mpv.commandResultAsync|commandResultAsync(dev.kmpv.MpvCommand){}[0]
+    final suspend fun commandResultAsync(kotlin/Array<out kotlin/String>...): dev.kmpv/MpvResult<dev.kmpv/MpvNode> // dev.kmpv/Mpv.commandResultAsync|commandResultAsync(kotlin.Array<out|kotlin.String>...){}[0]
+    final suspend fun getNodePropertyAsync(kotlin/String): dev.kmpv/MpvResult<dev.kmpv/MpvNode> // dev.kmpv/Mpv.getNodePropertyAsync|getNodePropertyAsync(kotlin.String){}[0]
+    final suspend fun setNodePropertyAsync(kotlin/String, dev.kmpv/MpvNode): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/Mpv.setNodePropertyAsync|setNodePropertyAsync(kotlin.String;dev.kmpv.MpvNode){}[0]
+
+    final object Companion { // dev.kmpv/Mpv.Companion|null[0]
+        final fun create(): dev.kmpv/Mpv // dev.kmpv/Mpv.Companion.create|create(){}[0]
+    }
+}
+
+final class dev.kmpv/MpvCommand { // dev.kmpv/MpvCommand|null[0]
+    final val args // dev.kmpv/MpvCommand.args|{}args[0]
+        final fun <get-args>(): kotlin.collections/List<kotlin/String> // dev.kmpv/MpvCommand.args.<get-args>|<get-args>(){}[0]
+
+    final fun toString(): kotlin/String // dev.kmpv/MpvCommand.toString|toString(){}[0]
+}
+
+final class dev.kmpv/MpvError { // dev.kmpv/MpvError|null[0]
+    constructor <init>(kotlin/Int, kotlin/String, kotlin/String? = ...) // dev.kmpv/MpvError.<init>|<init>(kotlin.Int;kotlin.String;kotlin.String?){}[0]
+
+    final val code // dev.kmpv/MpvError.code|{}code[0]
+        final fun <get-code>(): kotlin/Int // dev.kmpv/MpvError.code.<get-code>|<get-code>(){}[0]
+    final val context // dev.kmpv/MpvError.context|{}context[0]
+        final fun <get-context>(): kotlin/String? // dev.kmpv/MpvError.context.<get-context>|<get-context>(){}[0]
+    final val message // dev.kmpv/MpvError.message|{}message[0]
+        final fun <get-message>(): kotlin/String // dev.kmpv/MpvError.message.<get-message>|<get-message>(){}[0]
+
+    final fun component1(): kotlin/Int // dev.kmpv/MpvError.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.kmpv/MpvError.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.kmpv/MpvError.component3|component3(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/String = ..., kotlin/String? = ...): dev.kmpv/MpvError // dev.kmpv/MpvError.copy|copy(kotlin.Int;kotlin.String;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvError.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvError.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvError.toString|toString(){}[0]
+}
+
+final class dev.kmpv/MpvException : kotlin/RuntimeException { // dev.kmpv/MpvException|null[0]
+    constructor <init>(dev.kmpv/MpvError) // dev.kmpv/MpvException.<init>|<init>(dev.kmpv.MpvError){}[0]
+
+    final val error // dev.kmpv/MpvException.error|{}error[0]
+        final fun <get-error>(): dev.kmpv/MpvError // dev.kmpv/MpvException.error.<get-error>|<get-error>(){}[0]
+}
+
+final class dev.kmpv/MpvNativeHandleLease : kotlin/AutoCloseable { // dev.kmpv/MpvNativeHandleLease|null[0]
+    final val handle // dev.kmpv/MpvNativeHandleLease.handle|{}handle[0]
+        final fun <get-handle>(): kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed> // dev.kmpv/MpvNativeHandleLease.handle.<get-handle>|<get-handle>(){}[0]
+
+    final fun close() // dev.kmpv/MpvNativeHandleLease.close|close(){}[0]
+}
+
+final class dev.kmpv/MpvOptionsBuilder { // dev.kmpv/MpvOptionsBuilder|null[0]
+    final fun <#A1: kotlin/Any?> option(dev.kmpv/MpvOption<#A1>, #A1) // dev.kmpv/MpvOptionsBuilder.option|option(dev.kmpv.MpvOption<0:0>;0:0){0§<kotlin.Any?>}[0]
+    final fun option(kotlin/String, kotlin/String) // dev.kmpv/MpvOptionsBuilder.option|option(kotlin.String;kotlin.String){}[0]
+}
+
+final class dev.kmpv/MpvPlayer : kotlin/AutoCloseable { // dev.kmpv/MpvPlayer|null[0]
+    final val events // dev.kmpv/MpvPlayer.events|{}events[0]
+        final fun <get-events>(): kotlinx.coroutines.flow/SharedFlow<dev.kmpv/MpvPlayerEvent> // dev.kmpv/MpvPlayer.events.<get-events>|<get-events>(){}[0]
+    final val raw // dev.kmpv/MpvPlayer.raw|{}raw[0]
+        final fun <get-raw>(): dev.kmpv/Mpv // dev.kmpv/MpvPlayer.raw.<get-raw>|<get-raw>(){}[0]
+    final val state // dev.kmpv/MpvPlayer.state|{}state[0]
+        final fun <get-state>(): kotlinx.coroutines.flow/StateFlow<dev.kmpv/MpvPlayerState> // dev.kmpv/MpvPlayer.state.<get-state>|<get-state>(){}[0]
+
+    final fun close() // dev.kmpv/MpvPlayer.close|close(){}[0]
+    final fun pause(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.pause|pause(){}[0]
+    final fun play(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.play|play(){}[0]
+    final fun seekTo(kotlin.time/Duration): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.seekTo|seekTo(kotlin.time.Duration){}[0]
+    final fun selectTrack(dev.kmpv/MpvTrack): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.selectTrack|selectTrack(dev.kmpv.MpvTrack){}[0]
+    final fun selectTrack(dev.kmpv/MpvTrackType, dev.kmpv/MpvTrackSelection): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.selectTrack|selectTrack(dev.kmpv.MpvTrackType;dev.kmpv.MpvTrackSelection){}[0]
+    final fun setMuted(kotlin/Boolean): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.setMuted|setMuted(kotlin.Boolean){}[0]
+    final fun setSpeed(kotlin/Double): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.setSpeed|setSpeed(kotlin.Double){}[0]
+    final fun setVolume(kotlin/Double): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.setVolume|setVolume(kotlin.Double){}[0]
+    final fun skip(kotlin.time/Duration): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.skip|skip(kotlin.time.Duration){}[0]
+    final fun stop(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.stop|stop(){}[0]
+    final fun stopPlayback(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.stopPlayback|stopPlayback(){}[0]
+    final fun toggleMute(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.toggleMute|toggleMute(){}[0]
+    final fun togglePlayPause(): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.togglePlayPause|togglePlayPause(){}[0]
+    final fun tracks(): dev.kmpv/MpvResult<kotlin.collections/List<dev.kmpv/MpvTrack>> // dev.kmpv/MpvPlayer.tracks|tracks(){}[0]
+    final suspend fun load(kotlin/String, kotlin/Boolean = ..., kotlin.collections/Map<kotlin/String, kotlin/String> = ...): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.load|load(kotlin.String;kotlin.Boolean;kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    final suspend fun load(kotlin/String, kotlin/Boolean = ..., kotlin/Function1<dev.kmpv/MpvOptionsBuilder, kotlin/Unit>): dev.kmpv/MpvResult<kotlin/Unit> // dev.kmpv/MpvPlayer.load|load(kotlin.String;kotlin.Boolean;kotlin.Function1<dev.kmpv.MpvOptionsBuilder,kotlin.Unit>){}[0]
+
+    final object Companion { // dev.kmpv/MpvPlayer.Companion|null[0]
+        final fun create(dev.kmpv/MpvPlayerConfig = ...): dev.kmpv/MpvResult<dev.kmpv/MpvPlayer> // dev.kmpv/MpvPlayer.Companion.create|create(dev.kmpv.MpvPlayerConfig){}[0]
+        final fun create(kotlin/Function1<dev.kmpv/MpvPlayerConfigBuilder, kotlin/Unit>): dev.kmpv/MpvResult<dev.kmpv/MpvPlayer> // dev.kmpv/MpvPlayer.Companion.create|create(kotlin.Function1<dev.kmpv.MpvPlayerConfigBuilder,kotlin.Unit>){}[0]
+    }
+}
+
+final class dev.kmpv/MpvPlayerConfig { // dev.kmpv/MpvPlayerConfig|null[0]
+    constructor <init>(kotlin.collections/Map<kotlin/String, kotlin/String> = ..., kotlin/String? = ...) // dev.kmpv/MpvPlayerConfig.<init>|<init>(kotlin.collections.Map<kotlin.String,kotlin.String>;kotlin.String?){}[0]
+
+    final val configFile // dev.kmpv/MpvPlayerConfig.configFile|{}configFile[0]
+        final fun <get-configFile>(): kotlin/String? // dev.kmpv/MpvPlayerConfig.configFile.<get-configFile>|<get-configFile>(){}[0]
+    final val options // dev.kmpv/MpvPlayerConfig.options|{}options[0]
+        final fun <get-options>(): kotlin.collections/Map<kotlin/String, kotlin/String> // dev.kmpv/MpvPlayerConfig.options.<get-options>|<get-options>(){}[0]
+
+    final fun component1(): kotlin.collections/Map<kotlin/String, kotlin/String> // dev.kmpv/MpvPlayerConfig.component1|component1(){}[0]
+    final fun component2(): kotlin/String? // dev.kmpv/MpvPlayerConfig.component2|component2(){}[0]
+    final fun copy(kotlin.collections/Map<kotlin/String, kotlin/String> = ..., kotlin/String? = ...): dev.kmpv/MpvPlayerConfig // dev.kmpv/MpvPlayerConfig.copy|copy(kotlin.collections.Map<kotlin.String,kotlin.String>;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvPlayerConfig.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvPlayerConfig.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvPlayerConfig.toString|toString(){}[0]
+}
+
+final class dev.kmpv/MpvPlayerConfigBuilder { // dev.kmpv/MpvPlayerConfigBuilder|null[0]
+    final var configFile // dev.kmpv/MpvPlayerConfigBuilder.configFile|{}configFile[0]
+        final fun <get-configFile>(): kotlin/String? // dev.kmpv/MpvPlayerConfigBuilder.configFile.<get-configFile>|<get-configFile>(){}[0]
+        final fun <set-configFile>(kotlin/String?) // dev.kmpv/MpvPlayerConfigBuilder.configFile.<set-configFile>|<set-configFile>(kotlin.String?){}[0]
+
+    final fun <#A1: kotlin/Any?> option(dev.kmpv/MpvOption<#A1>, #A1) // dev.kmpv/MpvPlayerConfigBuilder.option|option(dev.kmpv.MpvOption<0:0>;0:0){0§<kotlin.Any?>}[0]
+    final fun configFile(kotlin/String) // dev.kmpv/MpvPlayerConfigBuilder.configFile|configFile(kotlin.String){}[0]
+    final fun option(kotlin/String, kotlin/String) // dev.kmpv/MpvPlayerConfigBuilder.option|option(kotlin.String;kotlin.String){}[0]
+}
+
+final class dev.kmpv/MpvPlayerState { // dev.kmpv/MpvPlayerState|null[0]
+    constructor <init>(dev.kmpv/MediaStatus = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin.time/Duration = ..., kotlin.time/Duration? = ..., kotlin/Double = ..., kotlin/Boolean = ..., kotlin/Double = ..., kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin.collections/List<dev.kmpv/MpvTrack> = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Double? = ..., kotlin/Double? = ..., kotlin/String? = ..., dev.kmpv/MpvError? = ...) // dev.kmpv/MpvPlayerState.<init>|<init>(dev.kmpv.MediaStatus;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.time.Duration;kotlin.time.Duration?;kotlin.Double;kotlin.Boolean;kotlin.Double;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.collections.List<dev.kmpv.MpvTrack>;kotlin.Long?;kotlin.Long?;kotlin.Double?;kotlin.Double?;kotlin.String?;dev.kmpv.MpvError?){}[0]
+
+    final val audioTracks // dev.kmpv/MpvPlayerState.audioTracks|{}audioTracks[0]
+        final fun <get-audioTracks>(): kotlin.collections/List<dev.kmpv/MpvTrack> // dev.kmpv/MpvPlayerState.audioTracks.<get-audioTracks>|<get-audioTracks>(){}[0]
+    final val duration // dev.kmpv/MpvPlayerState.duration|{}duration[0]
+        final fun <get-duration>(): kotlin.time/Duration? // dev.kmpv/MpvPlayerState.duration.<get-duration>|<get-duration>(){}[0]
+    final val error // dev.kmpv/MpvPlayerState.error|{}error[0]
+        final fun <get-error>(): dev.kmpv/MpvError? // dev.kmpv/MpvPlayerState.error.<get-error>|<get-error>(){}[0]
+    final val hardwareDecoder // dev.kmpv/MpvPlayerState.hardwareDecoder|{}hardwareDecoder[0]
+        final fun <get-hardwareDecoder>(): kotlin/String? // dev.kmpv/MpvPlayerState.hardwareDecoder.<get-hardwareDecoder>|<get-hardwareDecoder>(){}[0]
+    final val isBuffering // dev.kmpv/MpvPlayerState.isBuffering|{}isBuffering[0]
+        final fun <get-isBuffering>(): kotlin/Boolean // dev.kmpv/MpvPlayerState.isBuffering.<get-isBuffering>|<get-isBuffering>(){}[0]
+    final val isPlaying // dev.kmpv/MpvPlayerState.isPlaying|{}isPlaying[0]
+        final fun <get-isPlaying>(): kotlin/Boolean // dev.kmpv/MpvPlayerState.isPlaying.<get-isPlaying>|<get-isPlaying>(){}[0]
+    final val isSeeking // dev.kmpv/MpvPlayerState.isSeeking|{}isSeeking[0]
+        final fun <get-isSeeking>(): kotlin/Boolean // dev.kmpv/MpvPlayerState.isSeeking.<get-isSeeking>|<get-isSeeking>(){}[0]
+    final val mediaStatus // dev.kmpv/MpvPlayerState.mediaStatus|{}mediaStatus[0]
+        final fun <get-mediaStatus>(): dev.kmpv/MediaStatus // dev.kmpv/MpvPlayerState.mediaStatus.<get-mediaStatus>|<get-mediaStatus>(){}[0]
+    final val muted // dev.kmpv/MpvPlayerState.muted|{}muted[0]
+        final fun <get-muted>(): kotlin/Boolean // dev.kmpv/MpvPlayerState.muted.<get-muted>|<get-muted>(){}[0]
+    final val path // dev.kmpv/MpvPlayerState.path|{}path[0]
+        final fun <get-path>(): kotlin/String? // dev.kmpv/MpvPlayerState.path.<get-path>|<get-path>(){}[0]
+    final val playWhenReady // dev.kmpv/MpvPlayerState.playWhenReady|{}playWhenReady[0]
+        final fun <get-playWhenReady>(): kotlin/Boolean // dev.kmpv/MpvPlayerState.playWhenReady.<get-playWhenReady>|<get-playWhenReady>(){}[0]
+    final val position // dev.kmpv/MpvPlayerState.position|{}position[0]
+        final fun <get-position>(): kotlin.time/Duration // dev.kmpv/MpvPlayerState.position.<get-position>|<get-position>(){}[0]
+    final val seekable // dev.kmpv/MpvPlayerState.seekable|{}seekable[0]
+        final fun <get-seekable>(): kotlin/Boolean // dev.kmpv/MpvPlayerState.seekable.<get-seekable>|<get-seekable>(){}[0]
+    final val speed // dev.kmpv/MpvPlayerState.speed|{}speed[0]
+        final fun <get-speed>(): kotlin/Double // dev.kmpv/MpvPlayerState.speed.<get-speed>|<get-speed>(){}[0]
+    final val subtitleTracks // dev.kmpv/MpvPlayerState.subtitleTracks|{}subtitleTracks[0]
+        final fun <get-subtitleTracks>(): kotlin.collections/List<dev.kmpv/MpvTrack> // dev.kmpv/MpvPlayerState.subtitleTracks.<get-subtitleTracks>|<get-subtitleTracks>(){}[0]
+    final val title // dev.kmpv/MpvPlayerState.title|{}title[0]
+        final fun <get-title>(): kotlin/String? // dev.kmpv/MpvPlayerState.title.<get-title>|<get-title>(){}[0]
+    final val tracks // dev.kmpv/MpvPlayerState.tracks|{}tracks[0]
+        final fun <get-tracks>(): kotlin.collections/List<dev.kmpv/MpvTrack> // dev.kmpv/MpvPlayerState.tracks.<get-tracks>|<get-tracks>(){}[0]
+    final val videoBitrate // dev.kmpv/MpvPlayerState.videoBitrate|{}videoBitrate[0]
+        final fun <get-videoBitrate>(): kotlin/Double? // dev.kmpv/MpvPlayerState.videoBitrate.<get-videoBitrate>|<get-videoBitrate>(){}[0]
+    final val videoFps // dev.kmpv/MpvPlayerState.videoFps|{}videoFps[0]
+        final fun <get-videoFps>(): kotlin/Double? // dev.kmpv/MpvPlayerState.videoFps.<get-videoFps>|<get-videoFps>(){}[0]
+    final val videoHeight // dev.kmpv/MpvPlayerState.videoHeight|{}videoHeight[0]
+        final fun <get-videoHeight>(): kotlin/Long? // dev.kmpv/MpvPlayerState.videoHeight.<get-videoHeight>|<get-videoHeight>(){}[0]
+    final val videoTracks // dev.kmpv/MpvPlayerState.videoTracks|{}videoTracks[0]
+        final fun <get-videoTracks>(): kotlin.collections/List<dev.kmpv/MpvTrack> // dev.kmpv/MpvPlayerState.videoTracks.<get-videoTracks>|<get-videoTracks>(){}[0]
+    final val videoWidth // dev.kmpv/MpvPlayerState.videoWidth|{}videoWidth[0]
+        final fun <get-videoWidth>(): kotlin/Long? // dev.kmpv/MpvPlayerState.videoWidth.<get-videoWidth>|<get-videoWidth>(){}[0]
+    final val volume // dev.kmpv/MpvPlayerState.volume|{}volume[0]
+        final fun <get-volume>(): kotlin/Double // dev.kmpv/MpvPlayerState.volume.<get-volume>|<get-volume>(){}[0]
+
+    final fun component1(): dev.kmpv/MediaStatus // dev.kmpv/MpvPlayerState.component1|component1(){}[0]
+    final fun component10(): kotlin/Boolean // dev.kmpv/MpvPlayerState.component10|component10(){}[0]
+    final fun component11(): kotlin/String? // dev.kmpv/MpvPlayerState.component11|component11(){}[0]
+    final fun component12(): kotlin/String? // dev.kmpv/MpvPlayerState.component12|component12(){}[0]
+    final fun component13(): kotlin.collections/List<dev.kmpv/MpvTrack> // dev.kmpv/MpvPlayerState.component13|component13(){}[0]
+    final fun component14(): kotlin/Long? // dev.kmpv/MpvPlayerState.component14|component14(){}[0]
+    final fun component15(): kotlin/Long? // dev.kmpv/MpvPlayerState.component15|component15(){}[0]
+    final fun component16(): kotlin/Double? // dev.kmpv/MpvPlayerState.component16|component16(){}[0]
+    final fun component17(): kotlin/Double? // dev.kmpv/MpvPlayerState.component17|component17(){}[0]
+    final fun component18(): kotlin/String? // dev.kmpv/MpvPlayerState.component18|component18(){}[0]
+    final fun component19(): dev.kmpv/MpvError? // dev.kmpv/MpvPlayerState.component19|component19(){}[0]
+    final fun component2(): kotlin/Boolean // dev.kmpv/MpvPlayerState.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // dev.kmpv/MpvPlayerState.component3|component3(){}[0]
+    final fun component4(): kotlin/Boolean // dev.kmpv/MpvPlayerState.component4|component4(){}[0]
+    final fun component5(): kotlin.time/Duration // dev.kmpv/MpvPlayerState.component5|component5(){}[0]
+    final fun component6(): kotlin.time/Duration? // dev.kmpv/MpvPlayerState.component6|component6(){}[0]
+    final fun component7(): kotlin/Double // dev.kmpv/MpvPlayerState.component7|component7(){}[0]
+    final fun component8(): kotlin/Boolean // dev.kmpv/MpvPlayerState.component8|component8(){}[0]
+    final fun component9(): kotlin/Double // dev.kmpv/MpvPlayerState.component9|component9(){}[0]
+    final fun copy(dev.kmpv/MediaStatus = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin.time/Duration = ..., kotlin.time/Duration? = ..., kotlin/Double = ..., kotlin/Boolean = ..., kotlin/Double = ..., kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin.collections/List<dev.kmpv/MpvTrack> = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Double? = ..., kotlin/Double? = ..., kotlin/String? = ..., dev.kmpv/MpvError? = ...): dev.kmpv/MpvPlayerState // dev.kmpv/MpvPlayerState.copy|copy(dev.kmpv.MediaStatus;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.time.Duration;kotlin.time.Duration?;kotlin.Double;kotlin.Boolean;kotlin.Double;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.collections.List<dev.kmpv.MpvTrack>;kotlin.Long?;kotlin.Long?;kotlin.Double?;kotlin.Double?;kotlin.String?;dev.kmpv.MpvError?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvPlayerState.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvPlayerState.hashCode|hashCode(){}[0]
+    final fun selectedTrack(dev.kmpv/MpvTrackType): dev.kmpv/MpvTrack? // dev.kmpv/MpvPlayerState.selectedTrack|selectedTrack(dev.kmpv.MpvTrackType){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvPlayerState.toString|toString(){}[0]
+}
+
+final class dev.kmpv/MpvTrack { // dev.kmpv/MpvTrack|null[0]
+    constructor <init>(kotlin/Int, kotlin/Long, dev.kmpv/MpvTrackType, kotlin/Boolean, kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Double? = ..., kotlin/Long? = ...) // dev.kmpv/MpvTrack.<init>|<init>(kotlin.Int;kotlin.Long;dev.kmpv.MpvTrackType;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Long?;kotlin.Long?;kotlin.Double?;kotlin.Long?){}[0]
+
+    final val codec // dev.kmpv/MpvTrack.codec|{}codec[0]
+        final fun <get-codec>(): kotlin/String? // dev.kmpv/MpvTrack.codec.<get-codec>|<get-codec>(){}[0]
+    final val fps // dev.kmpv/MpvTrack.fps|{}fps[0]
+        final fun <get-fps>(): kotlin/Double? // dev.kmpv/MpvTrack.fps.<get-fps>|<get-fps>(){}[0]
+    final val height // dev.kmpv/MpvTrack.height|{}height[0]
+        final fun <get-height>(): kotlin/Long? // dev.kmpv/MpvTrack.height.<get-height>|<get-height>(){}[0]
+    final val hlsBitrate // dev.kmpv/MpvTrack.hlsBitrate|{}hlsBitrate[0]
+        final fun <get-hlsBitrate>(): kotlin/Long? // dev.kmpv/MpvTrack.hlsBitrate.<get-hlsBitrate>|<get-hlsBitrate>(){}[0]
+    final val id // dev.kmpv/MpvTrack.id|{}id[0]
+        final fun <get-id>(): kotlin/Long // dev.kmpv/MpvTrack.id.<get-id>|<get-id>(){}[0]
+    final val index // dev.kmpv/MpvTrack.index|{}index[0]
+        final fun <get-index>(): kotlin/Int // dev.kmpv/MpvTrack.index.<get-index>|<get-index>(){}[0]
+    final val language // dev.kmpv/MpvTrack.language|{}language[0]
+        final fun <get-language>(): kotlin/String? // dev.kmpv/MpvTrack.language.<get-language>|<get-language>(){}[0]
+    final val selected // dev.kmpv/MpvTrack.selected|{}selected[0]
+        final fun <get-selected>(): kotlin/Boolean // dev.kmpv/MpvTrack.selected.<get-selected>|<get-selected>(){}[0]
+    final val title // dev.kmpv/MpvTrack.title|{}title[0]
+        final fun <get-title>(): kotlin/String? // dev.kmpv/MpvTrack.title.<get-title>|<get-title>(){}[0]
+    final val type // dev.kmpv/MpvTrack.type|{}type[0]
+        final fun <get-type>(): dev.kmpv/MpvTrackType // dev.kmpv/MpvTrack.type.<get-type>|<get-type>(){}[0]
+    final val width // dev.kmpv/MpvTrack.width|{}width[0]
+        final fun <get-width>(): kotlin/Long? // dev.kmpv/MpvTrack.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Int // dev.kmpv/MpvTrack.component1|component1(){}[0]
+    final fun component10(): kotlin/Double? // dev.kmpv/MpvTrack.component10|component10(){}[0]
+    final fun component11(): kotlin/Long? // dev.kmpv/MpvTrack.component11|component11(){}[0]
+    final fun component2(): kotlin/Long // dev.kmpv/MpvTrack.component2|component2(){}[0]
+    final fun component3(): dev.kmpv/MpvTrackType // dev.kmpv/MpvTrack.component3|component3(){}[0]
+    final fun component4(): kotlin/Boolean // dev.kmpv/MpvTrack.component4|component4(){}[0]
+    final fun component5(): kotlin/String? // dev.kmpv/MpvTrack.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // dev.kmpv/MpvTrack.component6|component6(){}[0]
+    final fun component7(): kotlin/String? // dev.kmpv/MpvTrack.component7|component7(){}[0]
+    final fun component8(): kotlin/Long? // dev.kmpv/MpvTrack.component8|component8(){}[0]
+    final fun component9(): kotlin/Long? // dev.kmpv/MpvTrack.component9|component9(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/Long = ..., dev.kmpv/MpvTrackType = ..., kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Long? = ..., kotlin/Long? = ..., kotlin/Double? = ..., kotlin/Long? = ...): dev.kmpv/MpvTrack // dev.kmpv/MpvTrack.copy|copy(kotlin.Int;kotlin.Long;dev.kmpv.MpvTrackType;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.Long?;kotlin.Long?;kotlin.Double?;kotlin.Long?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.kmpv/MpvTrack.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.kmpv/MpvTrack.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.kmpv/MpvTrack.toString|toString(){}[0]
+}
+
+final object dev.kmpv/MpvCommands { // dev.kmpv/MpvCommands|null[0]
+    final fun loadFile(kotlin/String, dev.kmpv/LoadMode = ..., kotlin.collections/Map<kotlin/String, kotlin/String> = ...): dev.kmpv/MpvCommand // dev.kmpv/MpvCommands.loadFile|loadFile(kotlin.String;dev.kmpv.LoadMode;kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    final fun playlistNext(): dev.kmpv/MpvCommand // dev.kmpv/MpvCommands.playlistNext|playlistNext(){}[0]
+    final fun playlistPrevious(): dev.kmpv/MpvCommand // dev.kmpv/MpvCommands.playlistPrevious|playlistPrevious(){}[0]
+    final fun raw(kotlin/Array<out kotlin/String>...): dev.kmpv/MpvCommand // dev.kmpv/MpvCommands.raw|raw(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun seek(kotlin.time/Duration, dev.kmpv/SeekMode = ..., kotlin/Boolean = ...): dev.kmpv/MpvCommand // dev.kmpv/MpvCommands.seek|seek(kotlin.time.Duration;dev.kmpv.SeekMode;kotlin.Boolean){}[0]
+    final fun stop(): dev.kmpv/MpvCommand // dev.kmpv/MpvCommands.stop|stop(){}[0]
+}
+
+final object dev.kmpv/MpvOptions { // dev.kmpv/MpvOptions|null[0]
+    final val Ao // dev.kmpv/MpvOptions.Ao|{}Ao[0]
+        final fun <get-Ao>(): dev.kmpv/MpvOption<kotlin/String> // dev.kmpv/MpvOptions.Ao.<get-Ao>|<get-Ao>(){}[0]
+    final val AudioClientName // dev.kmpv/MpvOptions.AudioClientName|{}AudioClientName[0]
+        final fun <get-AudioClientName>(): dev.kmpv/MpvOption<kotlin/String> // dev.kmpv/MpvOptions.AudioClientName.<get-AudioClientName>|<get-AudioClientName>(){}[0]
+    final val HardwareDecoding // dev.kmpv/MpvOptions.HardwareDecoding|{}HardwareDecoding[0]
+        final fun <get-HardwareDecoding>(): dev.kmpv/MpvOption<dev.kmpv/MpvHardwareDecoding> // dev.kmpv/MpvOptions.HardwareDecoding.<get-HardwareDecoding>|<get-HardwareDecoding>(){}[0]
+    final val Hwdec // dev.kmpv/MpvOptions.Hwdec|{}Hwdec[0]
+        final fun <get-Hwdec>(): dev.kmpv/MpvOption<kotlin/String> // dev.kmpv/MpvOptions.Hwdec.<get-Hwdec>|<get-Hwdec>(){}[0]
+    final val KeepOpen // dev.kmpv/MpvOptions.KeepOpen|{}KeepOpen[0]
+        final fun <get-KeepOpen>(): dev.kmpv/MpvOption<kotlin/Boolean> // dev.kmpv/MpvOptions.KeepOpen.<get-KeepOpen>|<get-KeepOpen>(){}[0]
+    final val Terminal // dev.kmpv/MpvOptions.Terminal|{}Terminal[0]
+        final fun <get-Terminal>(): dev.kmpv/MpvOption<kotlin/Boolean> // dev.kmpv/MpvOptions.Terminal.<get-Terminal>|<get-Terminal>(){}[0]
+    final val VideoOutput // dev.kmpv/MpvOptions.VideoOutput|{}VideoOutput[0]
+        final fun <get-VideoOutput>(): dev.kmpv/MpvOption<dev.kmpv/MpvVideoOutput> // dev.kmpv/MpvOptions.VideoOutput.<get-VideoOutput>|<get-VideoOutput>(){}[0]
+    final val Vo // dev.kmpv/MpvOptions.Vo|{}Vo[0]
+        final fun <get-Vo>(): dev.kmpv/MpvOption<kotlin/String> // dev.kmpv/MpvOptions.Vo.<get-Vo>|<get-Vo>(){}[0]
+}
+
+final object dev.kmpv/MpvProperties { // dev.kmpv/MpvProperties|null[0]
+    final val AudioTrack // dev.kmpv/MpvProperties.AudioTrack|{}AudioTrack[0]
+        final fun <get-AudioTrack>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.AudioTrack.<get-AudioTrack>|<get-AudioTrack>(){}[0]
+    final val CacheBufferingState // dev.kmpv/MpvProperties.CacheBufferingState|{}CacheBufferingState[0]
+        final fun <get-CacheBufferingState>(): dev.kmpv/MpvProperty<kotlin/Long> // dev.kmpv/MpvProperties.CacheBufferingState.<get-CacheBufferingState>|<get-CacheBufferingState>(){}[0]
+    final val CoreIdle // dev.kmpv/MpvProperties.CoreIdle|{}CoreIdle[0]
+        final fun <get-CoreIdle>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.CoreIdle.<get-CoreIdle>|<get-CoreIdle>(){}[0]
+    final val Duration // dev.kmpv/MpvProperties.Duration|{}Duration[0]
+        final fun <get-Duration>(): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperties.Duration.<get-Duration>|<get-Duration>(){}[0]
+    final val EofReached // dev.kmpv/MpvProperties.EofReached|{}EofReached[0]
+        final fun <get-EofReached>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.EofReached.<get-EofReached>|<get-EofReached>(){}[0]
+    final val EstimatedVideoFps // dev.kmpv/MpvProperties.EstimatedVideoFps|{}EstimatedVideoFps[0]
+        final fun <get-EstimatedVideoFps>(): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperties.EstimatedVideoFps.<get-EstimatedVideoFps>|<get-EstimatedVideoFps>(){}[0]
+    final val Height // dev.kmpv/MpvProperties.Height|{}Height[0]
+        final fun <get-Height>(): dev.kmpv/MpvProperty<kotlin/Long> // dev.kmpv/MpvProperties.Height.<get-Height>|<get-Height>(){}[0]
+    final val HwdecCurrent // dev.kmpv/MpvProperties.HwdecCurrent|{}HwdecCurrent[0]
+        final fun <get-HwdecCurrent>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.HwdecCurrent.<get-HwdecCurrent>|<get-HwdecCurrent>(){}[0]
+    final val IdleActive // dev.kmpv/MpvProperties.IdleActive|{}IdleActive[0]
+        final fun <get-IdleActive>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.IdleActive.<get-IdleActive>|<get-IdleActive>(){}[0]
+    final val MediaTitle // dev.kmpv/MpvProperties.MediaTitle|{}MediaTitle[0]
+        final fun <get-MediaTitle>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.MediaTitle.<get-MediaTitle>|<get-MediaTitle>(){}[0]
+    final val MpvVersion // dev.kmpv/MpvProperties.MpvVersion|{}MpvVersion[0]
+        final fun <get-MpvVersion>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.MpvVersion.<get-MpvVersion>|<get-MpvVersion>(){}[0]
+    final val Mute // dev.kmpv/MpvProperties.Mute|{}Mute[0]
+        final fun <get-Mute>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.Mute.<get-Mute>|<get-Mute>(){}[0]
+    final val Path // dev.kmpv/MpvProperties.Path|{}Path[0]
+        final fun <get-Path>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.Path.<get-Path>|<get-Path>(){}[0]
+    final val Pause // dev.kmpv/MpvProperties.Pause|{}Pause[0]
+        final fun <get-Pause>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.Pause.<get-Pause>|<get-Pause>(){}[0]
+    final val PausedForCache // dev.kmpv/MpvProperties.PausedForCache|{}PausedForCache[0]
+        final fun <get-PausedForCache>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.PausedForCache.<get-PausedForCache>|<get-PausedForCache>(){}[0]
+    final val Seekable // dev.kmpv/MpvProperties.Seekable|{}Seekable[0]
+        final fun <get-Seekable>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.Seekable.<get-Seekable>|<get-Seekable>(){}[0]
+    final val Seeking // dev.kmpv/MpvProperties.Seeking|{}Seeking[0]
+        final fun <get-Seeking>(): dev.kmpv/MpvProperty<kotlin/Boolean> // dev.kmpv/MpvProperties.Seeking.<get-Seeking>|<get-Seeking>(){}[0]
+    final val Speed // dev.kmpv/MpvProperties.Speed|{}Speed[0]
+        final fun <get-Speed>(): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperties.Speed.<get-Speed>|<get-Speed>(){}[0]
+    final val SubtitleTrack // dev.kmpv/MpvProperties.SubtitleTrack|{}SubtitleTrack[0]
+        final fun <get-SubtitleTrack>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.SubtitleTrack.<get-SubtitleTrack>|<get-SubtitleTrack>(){}[0]
+    final val TimePos // dev.kmpv/MpvProperties.TimePos|{}TimePos[0]
+        final fun <get-TimePos>(): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperties.TimePos.<get-TimePos>|<get-TimePos>(){}[0]
+    final val TrackList // dev.kmpv/MpvProperties.TrackList|{}TrackList[0]
+        final fun <get-TrackList>(): dev.kmpv/MpvProperty<dev.kmpv/MpvNode> // dev.kmpv/MpvProperties.TrackList.<get-TrackList>|<get-TrackList>(){}[0]
+    final val VideoBitrate // dev.kmpv/MpvProperties.VideoBitrate|{}VideoBitrate[0]
+        final fun <get-VideoBitrate>(): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperties.VideoBitrate.<get-VideoBitrate>|<get-VideoBitrate>(){}[0]
+    final val VideoTrack // dev.kmpv/MpvProperties.VideoTrack|{}VideoTrack[0]
+        final fun <get-VideoTrack>(): dev.kmpv/MpvProperty<kotlin/String> // dev.kmpv/MpvProperties.VideoTrack.<get-VideoTrack>|<get-VideoTrack>(){}[0]
+    final val Volume // dev.kmpv/MpvProperties.Volume|{}Volume[0]
+        final fun <get-Volume>(): dev.kmpv/MpvProperty<kotlin/Double> // dev.kmpv/MpvProperties.Volume.<get-Volume>|<get-Volume>(){}[0]
+    final val Width // dev.kmpv/MpvProperties.Width|{}Width[0]
+        final fun <get-Width>(): dev.kmpv/MpvProperty<kotlin/Long> // dev.kmpv/MpvProperties.Width.<get-Width>|<get-Width>(){}[0]
+}
+
+final val dev.kmpv/isFailure // dev.kmpv/isFailure|@dev.kmpv.MpvResult<*>{}isFailure[0]
+    final fun (dev.kmpv/MpvResult<*>).<get-isFailure>(): kotlin/Boolean // dev.kmpv/isFailure.<get-isFailure>|<get-isFailure>@dev.kmpv.MpvResult<*>(){}[0]
+final val dev.kmpv/isSuccess // dev.kmpv/isSuccess|@dev.kmpv.MpvResult<*>{}isSuccess[0]
+    final fun (dev.kmpv/MpvResult<*>).<get-isSuccess>(): kotlin/Boolean // dev.kmpv/isSuccess.<get-isSuccess>|<get-isSuccess>@dev.kmpv.MpvResult<*>(){}[0]
+
+final fun (dev.kmpv/Mpv).dev.kmpv/acquireNativeHandleLease(): dev.kmpv/MpvNativeHandleLease // dev.kmpv/acquireNativeHandleLease|acquireNativeHandleLease@dev.kmpv.Mpv(){}[0]
+final fun (dev.kmpv/Mpv).dev.kmpv/nativeError(kotlin/Int, kotlin/String? = ...): dev.kmpv/MpvError // dev.kmpv/nativeError|nativeError@dev.kmpv.Mpv(kotlin.Int;kotlin.String?){}[0]
+final fun (dev.kmpv/Mpv).dev.kmpv/trackList(): dev.kmpv/MpvResult<kotlin.collections/List<dev.kmpv/MpvTrack>> // dev.kmpv/trackList|trackList@dev.kmpv.Mpv(){}[0]
+final fun (dev.kmpv/MpvResult<*>).dev.kmpv/errorOrNull(): dev.kmpv/MpvError? // dev.kmpv/errorOrNull|errorOrNull@dev.kmpv.MpvResult<*>(){}[0]
+final fun (dev.kmpv/MpvResult<*>).dev.kmpv/exceptionOrNull(): dev.kmpv/MpvException? // dev.kmpv/exceptionOrNull|exceptionOrNull@dev.kmpv.MpvResult<*>(){}[0]
+final fun <#A: kotlin/Any?> (dev.kmpv/Mpv).dev.kmpv/withNativeHandle(kotlin/Function1<kotlinx.cinterop/CPointer<out kotlinx.cinterop/CPointed>, #A>): #A // dev.kmpv/withNativeHandle|withNativeHandle@dev.kmpv.Mpv(kotlin.Function1<kotlinx.cinterop.CPointer<out|kotlinx.cinterop.CPointed>,0:0>){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/getOrNull(): #A? // dev.kmpv/getOrNull|getOrNull@dev.kmpv.MpvResult<0:0>(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/getOrThrow(): #A // dev.kmpv/getOrThrow|getOrThrow@dev.kmpv.MpvResult<0:0>(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/toKotlinResult(): kotlin/Result<#A> // dev.kmpv/toKotlinResult|toKotlinResult@dev.kmpv.MpvResult<0:0>(){0§<kotlin.Any?>}[0]
+final fun dev.kmpv/mpvOptions(kotlin/Function1<dev.kmpv/MpvOptionsBuilder, kotlin/Unit>): kotlin.collections/Map<kotlin/String, kotlin/String> // dev.kmpv/mpvOptions|mpvOptions(kotlin.Function1<dev.kmpv.MpvOptionsBuilder,kotlin.Unit>){}[0]
+final fun dev.kmpv/mpvPlayerConfig(kotlin/Function1<dev.kmpv/MpvPlayerConfigBuilder, kotlin/Unit>): dev.kmpv/MpvPlayerConfig // dev.kmpv/mpvPlayerConfig|mpvPlayerConfig(kotlin.Function1<dev.kmpv.MpvPlayerConfigBuilder,kotlin.Unit>){}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/fold(kotlin/Function1<#A, #B>, kotlin/Function1<dev.kmpv/MpvError, #B>): #B // dev.kmpv/fold|fold@dev.kmpv.MpvResult<0:0>(kotlin.Function1<0:0,0:1>;kotlin.Function1<dev.kmpv.MpvError,0:1>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/map(kotlin/Function1<#A, #B>): dev.kmpv/MpvResult<#B> // dev.kmpv/map|map@dev.kmpv.MpvResult<0:0>(kotlin.Function1<0:0,0:1>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/onFailure(kotlin/Function1<dev.kmpv/MpvError, kotlin/Unit>): dev.kmpv/MpvResult<#A> // dev.kmpv/onFailure|onFailure@dev.kmpv.MpvResult<0:0>(kotlin.Function1<dev.kmpv.MpvError,kotlin.Unit>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/onSuccess(kotlin/Function1<#A, kotlin/Unit>): dev.kmpv/MpvResult<#A> // dev.kmpv/onSuccess|onSuccess@dev.kmpv.MpvResult<0:0>(kotlin.Function1<0:0,kotlin.Unit>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (dev.kmpv/MpvResult<#A>).dev.kmpv/recover(kotlin/Function1<dev.kmpv/MpvError, #A>): dev.kmpv/MpvResult<#A> // dev.kmpv/recover|recover@dev.kmpv.MpvResult<0:0>(kotlin.Function1<dev.kmpv.MpvError,0:0>){0§<kotlin.Any?>}[0]

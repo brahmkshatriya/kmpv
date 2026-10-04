@@ -1,0 +1,420 @@
+name: kmpv CI and Publish
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/publish.yml"
+      - "build.gradle.kts"
+      - "gradle/**"
+      - "gradle.properties"
+      - "gradlew"
+      - "gradlew.bat"
+      - "kmpv/**"
+      - "kmpv-render/**"
+      - "kmpv-compose/**"
+      - "kmpv-android-jni/**"
+      - "samples/**"
+      - "scripts/**"
+      - "settings.gradle.kts"
+      - "RELEASING.md"
+      - "LICENSE*"
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v[0-9]*"
+      - "[0-9]*"
+    paths:
+      - ".github/workflows/publish.yml"
+      - "build.gradle.kts"
+      - "gradle/**"
+      - "gradle.properties"
+      - "gradlew"
+      - "gradlew.bat"
+      - "kmpv/**"
+      - "kmpv-render/**"
+      - "kmpv-compose/**"
+      - "kmpv-android-jni/**"
+      - "samples/**"
+      - "scripts/**"
+      - "settings.gradle.kts"
+      - "RELEASING.md"
+      - "LICENSE*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Maven version (required when publishing)"
+        required: false
+        type: string
+      publish:
+        description: "Publish the merged repository to Maven Central"
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: kmpv-${{ github.ref }}-${{ (github.event_name == 'workflow_dispatch' && inputs.publish && inputs.version) || 'ci' }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') && !(github.event_name == 'workflow_dispatch' && inputs.publish) }}
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    name: Resolve publication version
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      publish: ${{ steps.version.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Resolve and validate version
+        id: version
+        shell: bash
+        env:
+          MANUAL_VERSION: ${{ inputs.version }}
+          MANUAL_PUBLISH: ${{ inputs.publish }}
+        run: |
+          set -euo pipefail
+          publish=false
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$MANUAL_PUBLISH" == "true" ]]; then
+              publish=true
+              if [[ -z "$MANUAL_VERSION" ]]; then
+                echo "A version is required for manual publication" >&2
+                exit 1
+              fi
+            fi
+            version="${MANUAL_VERSION:-0.1.0-ci.${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}}"
+          elif [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            publish=true
+            version="${GITHUB_REF_NAME#v}"
+          else
+            version="0.1.0-ci.${GITHUB_RUN_NUMBER}.${GITHUB_RUN_ATTEMPT}"
+          fi
+
+          if [[ ! "$version" =~ ^[0-9A-Za-z][0-9A-Za-z._-]*$ ]]; then
+            echo "Invalid Maven version: $version" >&2
+            exit 1
+          fi
+          if [[ "$version" == *SNAPSHOT* ]]; then
+            echo "SNAPSHOT versions are not allowed in isolated publication repositories" >&2
+            exit 1
+          fi
+
+          if [[ "$publish" == true ]]; then
+            if [[ ! -f LICENSE && ! -f LICENSE.txt && ! -f LICENSE.md ]]; then
+              echo "A root LICENSE file is required before Maven Central publication." >&2
+              exit 1
+            fi
+          fi
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+
+  quality:
+    name: Tests, ABI and host-buildable targets
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: android-actions/setup-android@v4
+      - name: Install native build dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y libmpv-dev pkg-config
+          sdkmanager "platforms;android-37" "build-tools;37.0.0" "ndk;29.0.14206865" "cmake;3.22.1"
+      - name: Run tests and compile every host-buildable target
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon --stacktrace --no-configuration-cache \
+            :kmpv:checkKotlinAbi \
+            :kmpv-render:checkKotlinAbi \
+            :kmpv-compose:checkKotlinAbi \
+            :kmpv:linuxX64Test \
+            :kmpv:testAndroidHostTest \
+            :kmpv:linuxArm64Klib \
+            :kmpv-render:linuxArm64Klib \
+            :kmpv-compose:compileKotlinLinuxArm64 \
+            :kmpv:mingwX64Klib \
+            :kmpv-render:mingwX64Klib \
+            :kmpv-compose:compileKotlinMingwX64 \
+            :kmpv-android-jni:assembleDebug \
+            :kmpv:assembleAndroidMain \
+            :kmpv-render:assembleAndroidMain \
+            :kmpv-compose:assembleAndroidMain \
+            :samples:android:assembleDebug
+
+  common:
+    name: Build root KMP metadata repository
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: android-actions/setup-android@v4
+      - name: Install Android configuration SDK
+        shell: bash
+        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+      - name: Publish root metadata shard
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          set -euo pipefail
+          repository="$GITHUB_WORKSPACE/release/common-repository"
+          rm -rf "$repository"
+          bash scripts/publish-ci-shard.sh common "$repository" "$RELEASE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kmpv-repo-common-${{ needs.prepare.outputs.version }}
+          path: release/common-repository
+          if-no-files-found: error
+          retention-days: 7
+
+  linux_windows:
+    name: Build Linux + Windows repository
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: android-actions/setup-android@v4
+      - name: Install Android configuration SDK
+        shell: bash
+        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+      - name: Publish Linux x64, Linux arm64 and MinGW x64 shards
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          set -euo pipefail
+          repository="$GITHUB_WORKSPACE/release/linux-windows-repository"
+          rm -rf "$repository"
+          bash scripts/publish-ci-shard.sh linux "$repository" "$RELEASE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kmpv-repo-linux-windows-${{ needs.prepare.outputs.version }}
+          path: release/linux-windows-repository
+          if-no-files-found: error
+          retention-days: 7
+
+  android:
+    name: Build Android repository
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: android-actions/setup-android@v4
+      - name: Install Android native toolchain
+        shell: bash
+        run: sdkmanager "platforms;android-37" "build-tools;37.0.0" "ndk;29.0.14206865" "cmake;3.22.1"
+      - name: Publish Android AARs
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          set -euo pipefail
+          repository="$GITHUB_WORKSPACE/release/android-repository"
+          rm -rf "$repository"
+          bash scripts/publish-ci-shard.sh android "$repository" "$RELEASE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kmpv-repo-android-${{ needs.prepare.outputs.version }}
+          path: release/android-repository
+          if-no-files-found: error
+          retention-days: 7
+
+  macos_x64:
+    name: Build macOS x64 repository
+    needs: prepare
+    runs-on: macos-15-intel
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: android-actions/setup-android@v4
+      - name: Install Android configuration SDK
+        shell: bash
+        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+      - name: Publish macOS x64 target shard
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          set -euo pipefail
+          test "$(uname -m)" = "x86_64"
+          repository="$GITHUB_WORKSPACE/release/macos-x64-repository"
+          rm -rf "$repository"
+          bash scripts/publish-ci-shard.sh apple-x64 "$repository" "$RELEASE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kmpv-repo-macos-x64-${{ needs.prepare.outputs.version }}
+          path: release/macos-x64-repository
+          if-no-files-found: error
+          retention-days: 7
+
+  macos_arm64_ios:
+    name: Build macOS arm64 + iOS arm64 repository
+    needs: prepare
+    runs-on: macos-15
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: android-actions/setup-android@v4
+      - name: Install Android configuration SDK
+        shell: bash
+        run: sdkmanager "platforms;android-37" "build-tools;37.0.0"
+      - name: Publish macOS arm64 and iOS arm64 target shard
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          set -euo pipefail
+          test "$(uname -m)" = "arm64"
+          repository="$GITHUB_WORKSPACE/release/macos-arm64-ios-repository"
+          rm -rf "$repository"
+          bash scripts/publish-ci-shard.sh apple-arm64 "$repository" "$RELEASE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kmpv-repo-macos-arm64-ios-${{ needs.prepare.outputs.version }}
+          path: release/macos-arm64-ios-repository
+          if-no-files-found: error
+          retention-days: 7
+
+  merge:
+    name: Merge and verify complete Maven repository
+    needs:
+      - prepare
+      - quality
+      - common
+      - linux_windows
+      - android
+      - macos_x64
+      - macos_arm64_ios
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: kmpv-repo-*-${{ needs.prepare.outputs.version }}
+          path: release/shards
+      - name: Merge and verify repository
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+          SHOULD_PUBLISH: ${{ needs.prepare.outputs.publish }}
+        run: |
+          set -euo pipefail
+          mapfile -t shards < <(find release/shards -mindepth 1 -maxdepth 1 -type d -print | sort)
+          test "${#shards[@]}" -eq 5
+          python3 scripts/merge-kmpv-repositories.py \
+            release/maven-repository "${shards[@]}"
+
+          verify_args=()
+          if [[ "$SHOULD_PUBLISH" == true ]]; then
+            verify_args+=(--central-ready)
+          fi
+          python3 scripts/verify-kmpv-repository.py \
+            release/maven-repository "$RELEASE_VERSION" "${verify_args[@]}"
+          bash scripts/verify-kmpv-consumer.sh \
+            release/maven-repository "$RELEASE_VERSION"
+          du -sh release/maven-repository
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kmpv-maven-repo-${{ needs.prepare.outputs.version }}
+          path: release/maven-repository
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish exact repository to Maven Central
+    if: needs.prepare.outputs.publish == 'true'
+    needs:
+      - prepare
+      - merge
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: kmpv-maven-repo-${{ needs.prepare.outputs.version }}
+          path: release/maven-repository
+      - name: Restore Central credentials and signing key
+        shell: bash
+        env:
+          GRADLE_PROPERTIES_CONTENT: ${{ secrets.GRADLE_PROPERTIES_CONTENT }}
+          GPG_SECRET_KEY_RING_BASE64: ${{ secrets.GPG_SECRET_KEY_RING_BASE64 }}
+        run: |
+          set -euo pipefail
+          test -n "$GRADLE_PROPERTIES_CONTENT"
+          test -n "$GPG_SECRET_KEY_RING_BASE64"
+          gradle_dir="$HOME/.gradle"
+          properties_file="$gradle_dir/gradle.properties"
+          keyring="$gradle_dir/kmpv-secret-key.gpg"
+          mkdir -p "$gradle_dir"
+          printf '%s' "$GRADLE_PROPERTIES_CONTENT" > "$properties_file"
+          printf '%s' "$GPG_SECRET_KEY_RING_BASE64" | tr -d '\r\n ' | openssl base64 -d -A > "$keyring"
+          test -s "$keyring"
+          awk '!/^signing.secretKeyRingFile=/' "$properties_file" > "$properties_file.tmp"
+          mv "$properties_file.tmp" "$properties_file"
+          printf '\nsigning.secretKeyRingFile=%s\n' "$keyring" >> "$properties_file"
+          chmod 600 "$properties_file" "$keyring"
+      - name: Sign and publish one Central deployment
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          set -euo pipefail
+          bash scripts/publish-kmpv-central-bundle.sh \
+            "$GITHUB_WORKSPACE/release/maven-repository" \
+            "$RELEASE_VERSION" \
+            "$GITHUB_WORKSPACE/release/kmpv-$RELEASE_VERSION.zip"
+      - name: Preserve failed Central bundle
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-kmpv-central-bundle-${{ needs.prepare.outputs.version }}
+          path: release/kmpv-${{ needs.prepare.outputs.version }}.zip
+          if-no-files-found: ignore
+          retention-days: 7

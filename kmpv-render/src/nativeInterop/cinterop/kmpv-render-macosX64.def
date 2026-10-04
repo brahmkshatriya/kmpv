@@ -1,0 +1,6 @@
+headers = kmpv_render_gl.h
+headerFilter = kmpv_render_gl.h
+package = dev.kmpv.render.bridge
+compilerOpts = -Isrc/nativeInterop/cinterop/include
+staticLibraries = libkmpv_render_gl.a
+libraryPaths = build/native/render/macosX64
