@@ -786,3 +786,4 @@ public final class dev/kmpv/SeekMode : java/lang/Enum {
 	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/SeekMode;
 	public static fun values ()[Ldev/kmpv/SeekMode;
 }
+

@@ -19,3 +19,4 @@ public final class dev/kmpv/MpvAndroidVideoMode : java/lang/Enum {
 	public static fun valueOf (Ljava/lang/String;)Ldev/kmpv/MpvAndroidVideoMode;
 	public static fun values ()[Ldev/kmpv/MpvAndroidVideoMode;
 }
+

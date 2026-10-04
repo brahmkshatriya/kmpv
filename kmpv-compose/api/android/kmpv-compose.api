@@ -11,3 +11,4 @@ public final class dev/kmpv/compose/MpvVideoSurface_androidKt {
 	public static final fun MpvAndroidVideoSurface (Ldev/kmpv/MpvPlayer;Ldev/kmpv/MpvAndroidVideoMode;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun MpvAndroidVideoSurface (Ldev/kmpv/MpvPlayer;Ldev/kmpv/MpvAndroidVideoMode;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 }
+
