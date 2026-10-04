@@ -267,9 +267,9 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v6
       - uses: android-actions/setup-android@v4
-      - name: Install Android configuration SDK
-        shell: bash
-        run: android sdk install platforms/android-37 build-tools/37.0.0
+        with:
+          cmdline-tools-version: 12266719
+          packages: "platform-tools platforms;android-36 build-tools;36.0.0"
       - name: Publish macOS x64 target shard
         shell: bash
         env:
@@ -300,9 +300,9 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v6
       - uses: android-actions/setup-android@v4
-      - name: Install Android configuration SDK
-        shell: bash
-        run: android sdk install platforms/android-37 build-tools/37.0.0
+        with:
+          cmdline-tools-version: 12266719
+          packages: "platform-tools platforms;android-36 build-tools;36.0.0"
       - name: Publish macOS arm64 and iOS arm64 target shard
         shell: bash
         env:

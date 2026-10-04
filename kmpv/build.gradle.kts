@@ -240,7 +240,7 @@ kotlin {
 
     android {
         namespace = "dev.kmpv"
-        compileSdk = 37
+        compileSdk = if (appleOnly) 36 else 37
         minSdk = 24
         withHostTest {}
     }

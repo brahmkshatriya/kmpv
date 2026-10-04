@@ -207,7 +207,7 @@ kotlin {
 
     android {
         namespace = "dev.kmpv.render"
-        compileSdk = 37
+        compileSdk = if (appleOnly) 36 else 37
         minSdk = 24
     }
 

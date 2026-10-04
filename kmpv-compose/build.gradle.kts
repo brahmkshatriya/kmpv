@@ -9,6 +9,7 @@ plugins {
 
 val composeNativeVersion = providers.gradleProperty("kmpv.composeNativeVersion").get()
 val officialComposeVersion = "1.13.0-alpha01"
+val appleOnly = providers.gradleProperty("kmpv.appleOnly").orNull?.toBoolean() == true
 
 kotlin {
     @OptIn(org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation::class)
@@ -23,7 +24,7 @@ kotlin {
 
     android {
         namespace = "dev.kmpv.compose"
-        compileSdk = 37
+        compileSdk = if (appleOnly) 36 else 37
         minSdk = 24
     }
 
