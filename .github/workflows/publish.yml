@@ -117,6 +117,11 @@ jobs:
     needs: prepare
     runs-on: ubuntu-24.04
     timeout-minutes: 60
+    env:
+      KMPV_LINUX_ARM64_CC: aarch64-linux-gnu-gcc
+      KMPV_LINUX_ARM64_AR: aarch64-linux-gnu-ar
+      KMPV_MINGW_X64_CC: x86_64-w64-mingw32-gcc
+      KMPV_MINGW_X64_AR: x86_64-w64-mingw32-ar
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-java@v6.0.1
@@ -128,6 +133,15 @@ jobs:
       - name: Install Android configuration SDK
         shell: bash
         run: android sdk install platforms/android-37 build-tools/37.0.0
+      - name: Install Native cross toolchains
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            binutils-aarch64-linux-gnu \
+            binutils-mingw-w64-x86-64 \
+            gcc-aarch64-linux-gnu \
+            gcc-mingw-w64-x86-64
       - name: Check Kotlin ABI
         shell: bash
         run: |
@@ -188,8 +202,13 @@ jobs:
       - name: Install Linux x64 test dependencies
         shell: bash
         run: |
+          set -euo pipefail
           sudo apt-get update
           sudo apt-get install -y libmpv-dev pkg-config
+          libdir="$(pkg-config --variable=libdir mpv)"
+          test -n "$libdir"
+          test -f "$libdir/libmpv.so"
+          echo "KMPV_LINUX_X64_LIBRARY_DIRS=$libdir" >> "$GITHUB_ENV"
       - name: Test Linux x64
         shell: bash
         run: ./gradlew --no-daemon --stacktrace --no-configuration-cache :kmpv:linuxX64Test
@@ -214,6 +233,9 @@ jobs:
     needs: prepare
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    env:
+      KMPV_LINUX_ARM64_CC: aarch64-linux-gnu-gcc
+      KMPV_LINUX_ARM64_AR: aarch64-linux-gnu-ar
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-java@v6.0.1
@@ -225,6 +247,13 @@ jobs:
       - name: Install Android configuration SDK
         shell: bash
         run: android sdk install platforms/android-37 build-tools/37.0.0
+      - name: Install Linux arm64 cross toolchain
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            binutils-aarch64-linux-gnu \
+            gcc-aarch64-linux-gnu
       - name: Publish Linux arm64 target shard
         shell: bash
         env:
@@ -246,6 +275,9 @@ jobs:
     needs: prepare
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    env:
+      KMPV_MINGW_X64_CC: x86_64-w64-mingw32-gcc
+      KMPV_MINGW_X64_AR: x86_64-w64-mingw32-ar
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-java@v6.0.1
@@ -257,6 +289,13 @@ jobs:
       - name: Install Android configuration SDK
         shell: bash
         run: android sdk install platforms/android-37 build-tools/37.0.0
+      - name: Install MinGW x64 cross toolchain
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            binutils-mingw-w64-x86-64 \
+            gcc-mingw-w64-x86-64
       - name: Publish MinGW x64 target shard
         shell: bash
         env:
