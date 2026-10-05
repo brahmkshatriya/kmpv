@@ -26,13 +26,16 @@ No signing or Maven Central secret is provided to the Linux, Android, Apple, tes
 
 ## CI/release topology
 
-`.github/workflows/publish.yml` creates five isolated Maven repository shards:
+`.github/workflows/publish.yml` creates eight isolated Maven repository shards. Every platform target is built in its own CI job:
 
 - `common` — root Kotlin Multiplatform metadata for `kmpv`, `kmpv-render`, and `kmpv-compose`.
-- `linux_windows` — Linux x64, Linux arm64, and MinGW x64 variants.
+- `linux_x64` — Linux x64 variants and Linux x64 tests.
+- `linux_arm64` — Linux arm64 variants.
+- `mingw_x64` — MinGW x64 variants.
 - `android` — `kmpv-android-jni` plus Android core/render/Compose AAR publications. The JNI carrier is built with NDK r29 and does **not** bundle `libmpv.so`.
 - `macos_x64` — macOS x64 variants on an Intel macOS runner.
-- `macos_arm64_ios` — macOS arm64 and iOS arm64 variants on an Apple Silicon runner.
+- `macos_arm64` — macOS arm64 variants on an Apple Silicon runner.
+- `ios_arm64` — iOS arm64 variants on an Apple Silicon runner.
 
 The merge job rejects non-identical duplicate files and verifies:
 

@@ -2,9 +2,9 @@
 set -euo pipefail
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-shard="${1:?Usage: publish-ci-shard.sh <common|linux|android|apple|apple-x64|apple-arm64> REPOSITORY VERSION}"
-repository="${2:?Usage: publish-ci-shard.sh <common|linux|android|apple|apple-x64|apple-arm64> REPOSITORY VERSION}"
-version="${3:?Usage: publish-ci-shard.sh <common|linux|android|apple|apple-x64|apple-arm64> REPOSITORY VERSION}"
+shard="${1:?Usage: publish-ci-shard.sh <common|linux-x64|linux-arm64|mingw-x64|android|macos-x64|macos-arm64|ios-arm64> REPOSITORY VERSION}"
+repository="${2:?Usage: publish-ci-shard.sh <common|linux-x64|linux-arm64|mingw-x64|android|macos-x64|macos-arm64|ios-arm64> REPOSITORY VERSION}"
+version="${3:?Usage: publish-ci-shard.sh <common|linux-x64|linux-arm64|mingw-x64|android|macos-x64|macos-arm64|ios-arm64> REPOSITORY VERSION}"
 
 if [[ ! "$version" =~ ^[0-9A-Za-z][0-9A-Za-z._-]*$ ]]; then
     echo "Invalid Maven version: $version" >&2
@@ -38,14 +38,24 @@ case "$shard" in
         )
         "${gradle[@]}" "${tasks[@]}"
         ;;
-    linux)
+    linux-x64)
         tasks=(
             :kmpv:publishLinuxX64PublicationToKmpvReleaseRepository
             :kmpv-render:publishLinuxX64PublicationToKmpvReleaseRepository
             :kmpv-compose:publishLinuxX64PublicationToKmpvReleaseRepository
+        )
+        "${gradle[@]}" "${tasks[@]}"
+        ;;
+    linux-arm64)
+        tasks=(
             :kmpv:publishLinuxArm64PublicationToKmpvReleaseRepository
             :kmpv-render:publishLinuxArm64PublicationToKmpvReleaseRepository
             :kmpv-compose:publishLinuxArm64PublicationToKmpvReleaseRepository
+        )
+        "${gradle[@]}" "${tasks[@]}"
+        ;;
+    mingw-x64)
+        tasks=(
             :kmpv:publishMingwX64PublicationToKmpvReleaseRepository
             :kmpv-render:publishMingwX64PublicationToKmpvReleaseRepository
             :kmpv-compose:publishMingwX64PublicationToKmpvReleaseRepository
@@ -61,21 +71,7 @@ case "$shard" in
         )
         "${gradle[@]}" "${tasks[@]}"
         ;;
-    apple)
-        tasks=(
-            :kmpv:publishMacosX64PublicationToKmpvReleaseRepository
-            :kmpv-render:publishMacosX64PublicationToKmpvReleaseRepository
-            :kmpv-compose:publishMacosX64PublicationToKmpvReleaseRepository
-            :kmpv:publishMacosArm64PublicationToKmpvReleaseRepository
-            :kmpv-render:publishMacosArm64PublicationToKmpvReleaseRepository
-            :kmpv-compose:publishMacosArm64PublicationToKmpvReleaseRepository
-            :kmpv:publishIosArm64PublicationToKmpvReleaseRepository
-            :kmpv-render:publishIosArm64PublicationToKmpvReleaseRepository
-            :kmpv-compose:publishIosArm64PublicationToKmpvReleaseRepository
-        )
-        "${gradle[@]}" -Pkmpv.appleOnly=true "${tasks[@]}"
-        ;;
-    apple-x64)
+    macos-x64)
         tasks=(
             :kmpv:publishMacosX64PublicationToKmpvReleaseRepository
             :kmpv-render:publishMacosX64PublicationToKmpvReleaseRepository
@@ -83,11 +79,16 @@ case "$shard" in
         )
         "${gradle[@]}" -Pkmpv.appleOnly=true "${tasks[@]}"
         ;;
-    apple-arm64)
+    macos-arm64)
         tasks=(
             :kmpv:publishMacosArm64PublicationToKmpvReleaseRepository
             :kmpv-render:publishMacosArm64PublicationToKmpvReleaseRepository
             :kmpv-compose:publishMacosArm64PublicationToKmpvReleaseRepository
+        )
+        "${gradle[@]}" -Pkmpv.appleOnly=true "${tasks[@]}"
+        ;;
+    ios-arm64)
+        tasks=(
             :kmpv:publishIosArm64PublicationToKmpvReleaseRepository
             :kmpv-render:publishIosArm64PublicationToKmpvReleaseRepository
             :kmpv-compose:publishIosArm64PublicationToKmpvReleaseRepository
