@@ -31,21 +31,28 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":kmpv"))
-            api("org.jetbrains.compose.runtime:runtime:$officialComposeVersion")
-            api("org.jetbrains.compose.ui:ui:$officialComposeVersion")
+            // Common code needs the Compose types to compile, but each target below
+            // publishes the Compose implementation that actually exists for it.
+            compileOnly("org.jetbrains.compose.runtime:runtime:$officialComposeVersion")
+            compileOnly("org.jetbrains.compose.ui:ui:$officialComposeVersion")
         }
 
         desktopNativeMain.dependencies {
             api(project(":kmpv-render"))
-            implementation("dev.brahmkshatriya.compose.ui:ui:$composeNativeVersion")
+            api("dev.brahmkshatriya.compose.runtime:runtime:$composeNativeVersion")
+            api("dev.brahmkshatriya.compose.ui:ui:$composeNativeVersion")
             implementation("dev.brahmkshatriya.compose.foundation:foundation:$composeNativeVersion")
             implementation("dev.brahmkshatriya.compose.desktop:desktop-native:$composeNativeVersion")
         }
         androidMain.dependencies {
             api(project(":kmpv-render"))
+            api("org.jetbrains.compose.runtime:runtime:$officialComposeVersion")
+            api("org.jetbrains.compose.ui:ui:$officialComposeVersion")
         }
         iosArm64Main.dependencies {
             api(project(":kmpv-render"))
+            api("org.jetbrains.compose.runtime:runtime:$officialComposeVersion")
+            api("org.jetbrains.compose.ui:ui:$officialComposeVersion")
         }
     }
 }

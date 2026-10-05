@@ -53,12 +53,9 @@ The merged Maven repository is uploaded as a workflow artifact on every CI run. 
 
 ## Publishing
 
-Two release entry points are supported:
+Maven Central publication is triggered only by a pushed version tag, such as `v0.1.0-alpha01`. Branch pushes, pull requests, and manual workflow runs build and verify artifacts but never publish them.
 
-- push a tag such as `v0.1.0-alpha01`;
-- run **kmpv CI and Publish** manually, set `publish=true`, and provide a Maven version.
-
-For either path, CI signs every file in the already-verified merged repository, generates Maven checksums, creates one Maven Central Portal bundle, uploads it with `publishingType=AUTOMATIC`, and waits for the Central deployment to reach `PUBLISHED`.
+For a tag release, CI signs every file in the already-verified merged repository, generates Maven checksums, creates one Maven Central Portal bundle, uploads it with `publishingType=AUTOMATIC`, and waits for the Central deployment to reach `PUBLISHED`.
 
 ## Local checks
 
