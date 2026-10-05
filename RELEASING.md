@@ -4,7 +4,7 @@ The release pipeline uses isolated Maven repository shards. Each compatible CI h
 
 ## Before the first public release
 
-1. Verify the `dev.kmpv` namespace in Maven Central.
+1. Verify the `dev.brahmkshatriya.kmpv` namespace in Maven Central.
 2. Configure the GitHub Actions secrets below.
 
 The public Maven identity is checked into `gradle/kmpv-release.properties`: `https://github.com/brahmkshatriya/kmpv`, Apache-2.0, and developer `brahmkshatriya` / Shivam. `KMPV_POM_*` environment variables remain available as optional overrides for local or forked publication builds.

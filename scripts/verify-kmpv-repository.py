@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ElementTree
 import zipfile
 from pathlib import Path
 
-GROUP = "dev.kmpv"
+GROUP = "dev.brahmkshatriya.kmpv"
 ROOTS = ("kmpv", "kmpv-render", "kmpv-compose")
 TARGETS = (
     "android",

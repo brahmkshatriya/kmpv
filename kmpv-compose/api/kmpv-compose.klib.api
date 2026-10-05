@@ -5,7 +5,7 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <dev.kmpv:kmpv-compose>
+// Library unique name: <dev.brahmkshatriya.kmpv:kmpv-compose>
 final fun dev.kmpv.compose/MpvVideoSurface(dev.kmpv/Mpv, androidx.compose.ui/Modifier?, kotlin/Function0<kotlin/Unit>, kotlin/Function1<dev.kmpv/MpvError, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // dev.kmpv.compose/MpvVideoSurface|MpvVideoSurface(dev.kmpv.Mpv;androidx.compose.ui.Modifier?;kotlin.Function0<kotlin.Unit>;kotlin.Function1<dev.kmpv.MpvError,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
 final fun dev.kmpv.compose/MpvVideoSurface(dev.kmpv/Mpv, androidx.compose.ui/Modifier?, kotlin/Function1<dev.kmpv/MpvError, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // dev.kmpv.compose/MpvVideoSurface|MpvVideoSurface(dev.kmpv.Mpv;androidx.compose.ui.Modifier?;kotlin.Function1<dev.kmpv.MpvError,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
 final fun dev.kmpv.compose/MpvVideoSurface(dev.kmpv/MpvPlayer, androidx.compose.ui/Modifier?, kotlin/Function0<kotlin/Unit>, kotlin/Function1<dev.kmpv/MpvError, kotlin/Unit>?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // dev.kmpv.compose/MpvVideoSurface|MpvVideoSurface(dev.kmpv.MpvPlayer;androidx.compose.ui.Modifier?;kotlin.Function0<kotlin.Unit>;kotlin.Function1<dev.kmpv.MpvError,kotlin.Unit>?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]

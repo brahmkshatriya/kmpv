@@ -82,9 +82,9 @@ version="${KMPV_VERSION:-$(
     echo "Could not determine the kmpv publication version." >&2
     exit 1
 }
-core="$HOME/.m2/repository/dev/kmpv/kmpv-$linux_suffix/$version/kmpv-$linux_suffix-$version.klib"
-render_pom="$HOME/.m2/repository/dev/kmpv/kmpv-render-$linux_suffix/$version/kmpv-render-$linux_suffix-$version.pom"
-compose_pom="$HOME/.m2/repository/dev/kmpv/kmpv-compose-$linux_suffix/$version/kmpv-compose-$linux_suffix-$version.pom"
+core="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-$linux_suffix/$version/kmpv-$linux_suffix-$version.klib"
+render_pom="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-render-$linux_suffix/$version/kmpv-render-$linux_suffix-$version.pom"
+compose_pom="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-compose-$linux_suffix/$version/kmpv-compose-$linux_suffix-$version.pom"
 
 [[ -f "$core" ]] || { echo "Missing core Linux publication: $core" >&2; exit 1; }
 [[ -f "$render_pom" ]] || { echo "Missing renderer Linux publication: $render_pom" >&2; exit 1; }
@@ -101,7 +101,7 @@ grep -q "<artifactId>kmpv-render-$linux_suffix</artifactId>" "$compose_pom" || {
 if [[ "$host_arch" != "aarch64" && "$host_arch" != "arm64" ]]; then
     for suffix in linuxarm64 mingwx64; do
         for artifact in kmpv kmpv-render kmpv-compose; do
-            published="$HOME/.m2/repository/dev/kmpv/$artifact-$suffix/$version"
+            published="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/$artifact-$suffix/$version"
             [[ -d "$published" ]] || {
                 echo "Missing cross-target publication: $artifact-$suffix" >&2
                 exit 1
@@ -111,10 +111,10 @@ if [[ "$host_arch" != "aarch64" && "$host_arch" != "arm64" ]]; then
 fi
 
 if [[ "$android_enabled" == true ]]; then
-    android_pom="$HOME/.m2/repository/dev/kmpv/kmpv-android/$version/kmpv-android-$version.pom"
-    jni_aar="$HOME/.m2/repository/dev/kmpv/kmpv-android-jni/$version/kmpv-android-jni-$version.aar"
-    android_render_pom="$HOME/.m2/repository/dev/kmpv/kmpv-render-android/$version/kmpv-render-android-$version.pom"
-    android_compose_pom="$HOME/.m2/repository/dev/kmpv/kmpv-compose-android/$version/kmpv-compose-android-$version.pom"
+    android_pom="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-android/$version/kmpv-android-$version.pom"
+    jni_aar="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-android-jni/$version/kmpv-android-jni-$version.aar"
+    android_render_pom="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-render-android/$version/kmpv-render-android-$version.pom"
+    android_compose_pom="$HOME/.m2/repository/dev/brahmkshatriya/kmpv/kmpv-compose-android/$version/kmpv-compose-android-$version.pom"
     [[ -f "$android_pom" ]] || { echo "Missing Android kmpv publication: $android_pom" >&2; exit 1; }
     [[ -f "$jni_aar" ]] || { echo "Missing Android JNI publication: $jni_aar" >&2; exit 1; }
     [[ -f "$android_render_pom" ]] || { echo "Missing Android render publication: $android_render_pom" >&2; exit 1; }

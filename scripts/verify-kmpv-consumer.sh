@@ -29,9 +29,9 @@ rootProject.name = "kmpv-ci-consumer"
 EOF
 
 dependencies='''
-            implementation("dev.kmpv:kmpv:'"$version"'")
-            implementation("dev.kmpv:kmpv-render:'"$version"'")
-            implementation("dev.kmpv:kmpv-compose:'"$version"'")'''
+            implementation("dev.brahmkshatriya.kmpv:kmpv:'"$version"'")
+            implementation("dev.brahmkshatriya.kmpv:kmpv-render:'"$version"'")
+            implementation("dev.brahmkshatriya.kmpv:kmpv-compose:'"$version"'")'''
 
 cat > "$tmp/build.gradle.kts" <<EOF
 plugins {

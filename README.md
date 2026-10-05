@@ -1,5 +1,7 @@
 # kmpv
 
+[![Maven Central](https://img.shields.io/maven-central/v/dev.brahmkshatriya.kmpv/kmpv.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/dev.brahmkshatriya.kmpv/kmpv)
+
 `kmpv` is a Kotlin Multiplatform wrapper for [libmpv](https://mpv.io/). It provides a typed playback API, observable player state, optional video rendering helpers, and Compose video surfaces.
 
 The library is split into three modules:
@@ -32,7 +34,7 @@ val kmpvVersion = "<version>"
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("dev.kmpv:kmpv:$kmpvVersion")
+            implementation("dev.brahmkshatriya.kmpv:kmpv:$kmpvVersion")
         }
     }
 }
@@ -41,13 +43,13 @@ kotlin {
 For video rendering, add:
 
 ```kotlin
-implementation("dev.kmpv:kmpv-render:$kmpvVersion")
+implementation("dev.brahmkshatriya.kmpv:kmpv-render:$kmpvVersion")
 ```
 
 For Compose video surfaces, add:
 
 ```kotlin
-implementation("dev.kmpv:kmpv-compose:$kmpvVersion")
+implementation("dev.brahmkshatriya.kmpv:kmpv-compose:$kmpvVersion")
 ```
 
 If your Compose setup uses development Compose artifacts, keep the Compose development repository available:

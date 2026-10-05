@@ -23,7 +23,7 @@ fun releaseProperty(name: String): String = checkNotNull(releaseProperties.getPr
 }
 
 allprojects {
-    group = "dev.kmpv"
+    group = "dev.brahmkshatriya.kmpv"
     version = providers.environmentVariable("KMPV_VERSION")
         .orElse(providers.gradleProperty("kmpv.version"))
         .get()

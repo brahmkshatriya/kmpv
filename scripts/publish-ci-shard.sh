@@ -101,7 +101,7 @@ case "$shard" in
         ;;
 esac
 
-if ! find "$repository/dev/kmpv" -type f -name '*.pom' -print -quit 2>/dev/null | grep -q .; then
+if ! find "$repository/dev/brahmkshatriya/kmpv" -type f -name '*.pom' -print -quit 2>/dev/null | grep -q .; then
     echo "Shard $shard produced no Maven POMs in $repository" >&2
     exit 1
 fi

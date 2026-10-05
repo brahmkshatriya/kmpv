@@ -5,7 +5,7 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <dev.kmpv:kmpv-render>
+// Library unique name: <dev.brahmkshatriya.kmpv:kmpv-render>
 final enum class dev.kmpv/MpvOpenGlNativeDisplayType : kotlin/Enum<dev.kmpv/MpvOpenGlNativeDisplayType> { // dev.kmpv/MpvOpenGlNativeDisplayType|null[0]
     enum entry None // dev.kmpv/MpvOpenGlNativeDisplayType.None|null[0]
     enum entry Wayland // dev.kmpv/MpvOpenGlNativeDisplayType.Wayland|null[0]

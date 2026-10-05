@@ -54,7 +54,7 @@ staging="$bundle_directory/central-staging"
 rm -rf "$staging"
 mkdir -p "$staging"
 
-group_root="$repository/dev/kmpv"
+group_root="$repository/dev/brahmkshatriya/kmpv"
 while IFS= read -r -d '' version_directory; do
     destination="$staging/${version_directory#"$repository/"}"
     mkdir -p "$destination"
