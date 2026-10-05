@@ -8,6 +8,7 @@ import zipfile
 from pathlib import Path
 
 GROUP = "dev.brahmkshatriya.kmpv"
+GROUP_PATH = Path(*GROUP.split("."))
 ROOTS = ("kmpv", "kmpv-render", "kmpv-compose")
 TARGETS = (
     "android",
@@ -26,7 +27,7 @@ def fail(message: str) -> None:
 
 
 def coordinate_dir(repository: Path, artifact: str, version: str) -> Path:
-    return repository / "dev" / "kmpv" / artifact / version
+    return repository / GROUP_PATH / artifact / version
 
 
 def xml_text(root: ElementTree.Element, path: str) -> str:
@@ -146,9 +147,9 @@ def main() -> None:
             for target in ("macosx64", "macosarm64", "iosarm64"):
                 expected.discard(f"{root_artifact}-{target}")
 
-    base = repository / "dev" / "kmpv"
+    base = repository / GROUP_PATH
     if not base.is_dir():
-        fail(f"Missing dev.kmpv repository root: {base}")
+        fail(f"Missing {GROUP} repository root: {base}")
 
     actual: set[str] = set()
     all_poms = sorted(base.rglob("*.pom"))
